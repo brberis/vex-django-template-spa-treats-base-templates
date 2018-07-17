@@ -1,0 +1,301 @@
+{% load cms_tags staticfiles sekizai_tags menu_tags i18n seo_data easy_thumbnail langs_available company_info company_email company_address company_phone %}
+{% get_current_language as LANGUAGE_CODE %}
+{% seo_data as seo %}
+{% langs_available as l_aval %}
+{% company_info as c_info %}
+{% company_email as c_email %}
+{% company_address as c_address %}
+{% company_phone as c_phone %}
+<!DOCTYPE html>
+<html lang="{{LANGUAGE_CODE}}">
+
+<head>
+    <!--
+    Basic Page Needs
+    ==================================================
+    -->
+    <meta charset="UTF-8">
+        <title>{% block title %}{% page_attribute page_title %}{% endblock %}{% if seo.site_title %} - {{seo.site_title}}{% endif %}</title>
+    {% block extra_head_tags %}{% endblock %}
+    <!--
+    Mobile Specific Metas
+    ==================================================
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    CSS
+    ==================================================
+    -->
+    <link id="favicon" rel="shortcut icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   type="image/x-icon" />
+    <link rel="icon"  type="image/x-icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   /> 
+    <!-- External CSS libraries -->
+    {% render_block "css" %}
+    <link href="/static/fonts/fonts.css" rel="stylesheet">
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendor/elegant-icons/style.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/vendor/css-hamburgers/dist/hamburgers.min.css" rel="stylesheet">
+    <link href="/static/vendor/chosen/chosen.css" rel="stylesheet">
+    <link href="/static/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/static/vendor/plyr/plyr.min.css" rel="stylesheet">
+    <link href="/static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/static/vendor/revolution/css/layers.css" rel="stylesheet">
+    <link href="/static/vendor/revolution/css/navigation.css" rel="stylesheet">
+    <link href="/static/vendor/revolution/css/settings.css" rel="stylesheet">
+    <link href="/static/css4/main.css" rel="stylesheet">
+    <link href="/static/css4/switcher.css" rel="stylesheet">
+    <link href="/static/css4/colors/primary.css" rel="stylesheet" id="colors">
+    <link href="/static/css4/retina.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <script src="/static/js4/modernizr-custom.js"></script>
+</head>
+
+<body>
+    {% cms_toolbar %}
+    <!-- page load-->
+    <div class="page-loader">
+        <div class="loader"></div>
+    </div>
+    <header>
+        <!-- header / start-->
+        <div class="hidden-tablet-landscape-up">
+            <div class="header header-mobile-1">
+                <div class="top-header">
+                    <div class="container-fluid">
+                        <div class="logo">
+                            <a href="/{{language.language_code}}">
+                                <img src="{% easy_thumbnail c_info.main_logo 180x80 %}" alt="Consulting" />
+                            </a>
+                        </div>
+<!--                         <div class="search-widget search-widget-1">
+                            <div class="icon-search">
+                                <i class="icon_search"></i>
+                            </div>
+                            <input class="animated" type="text" placeholder="Search" />
+                        </div> -->
+                        <button class="hamburger hamburger--spin hidden-tablet-landscape-up" id="toggle-icon">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="au-navbar-mobile navbar-mobile-1">
+                    <ul class="au-navbar-menu">
+                 {% show_menu 0 1 100 100 "menu.html" %}
+                    </ul>
+                </div>
+                    <div class="container-fluid">
+                        <div class="contact-widget contact-widget-1">
+                            <div class="icon-box icon-box-1">
+                                <div class="icon">
+                                    <i class="icon_phone"></i>
+                                </div>
+                                <div class="content">
+                                    <p>{{c_phone}}</p>
+                                    <p>{{c_email}}</p>
+                                </div>
+                            </div>
+                            <div class="icon-box icon-box-1">
+                                <div class="icon">
+                                    <i class="icon_pin"></i>
+                                </div>
+                                {% if c_address %}
+                                <div class="content">
+                                    <p>{{c_address.address}}</p>
+                                    <p>{{c_address.city|default_if_none:""}}, {{c_address.region|default_if_none:""}}, {{c_address.zipcode|default_if_none:""}}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <a class="hidden-tablet-landscape au-btn au-btn-primary" href="#">{% trans "Contact Us" %}</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="hidden-tablet-landscape">
+            <div class="topbar topbar-1 bg-black">
+                <div class="container">
+                    <div class="block-left">
+                        <p class="text-block">{{c_info.slogan}}</p>
+                    </div>
+                    <div class="block-right">
+                        {% if seo.multi_language == True %}
+                        <div class="chosen-lang m-r-25">
+                            <select class="chosen-select">
+                                {% for language in l_aval %}
+                          
+                                <option value="{{language.language_code}}" selected="">{{language.name}}</option>
+    
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+                        <ul class="horizontal-list">
+                            {% if c_info.facebook %}
+                            <li class="social-item-1">
+                                <a class="fa fa-facebook"></a>
+                            </li>
+                            {% endif %}
+                            {% if c_info.twitter %}
+                            <li class="social-item-1">
+                                <a class="fa fa-twitter"></a>
+                            </li>
+                            {% endif %}
+                            {% if c_info.google %}
+                            <li class="social-item-1">
+                                <a class="fa fa-google-plus"></a>
+                            </li>
+                            {% endif %}
+                            {% if c_info.linkedin %}
+                            <li class="social-item-1">
+                                <a class="fa fa-linkedin"></a>
+                            </li>
+                            {% endif %}
+                            {% if c_info.instagram %}
+                            <li class="social-item-1">
+                                <a class="fa fa-instagram"></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header header-1">
+                <div class="container">
+                    <div class="block-left">
+                        <div class="logo">
+                            <a href="/{{language.language_code}}">
+                                <img src="{% easy_thumbnail c_info.main_logo 180x80 %}" alt="{{c_info.fantasy_name}}" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block-right">
+                        <div class="contact-widget contact-widget-1">
+                            <div class="icon-box icon-box-1">
+                                <div class="icon">
+                                    <i class="icon_phone"></i>
+                                </div>
+                                <div class="content">
+                                    <p>{{c_phone}}</p>
+                                    <p>{{c_email}}</p>
+                                </div>
+                            </div>
+                            <div class="icon-box icon-box-1">
+                                <div class="icon">
+                                    <i class="icon_pin"></i>
+                                </div>
+                                {% if c_address %}
+                                <div class="content">
+                                    <p>{{c_address.address}}</p>
+                                    <p>{{c_address.city|default_if_none:""}}, {{c_address.region|default_if_none:""}}, {{c_address.zipcode|default_if_none:""}}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <a class="hidden-tablet-landscape au-btn au-btn-primary" href="/contacto">{% trans "Contact Us" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-navbar-1 bg-grey hidden-tablet-landscape" id="js-navbar-fixed">
+            <div class="container">
+                <div class="block-left">
+                    <div class="logo-mobile">
+                        <a href="index.html">
+                            <img src="{% easy_thumbnail c_info.scrolled_logo 192x35 %}" alt="{{c_info.fantasy_name}}">
+                        </a>
+                    </div>
+                    <nav>
+                        <div class="au-navbar navbar-1">
+                            <ul class="au-navbar-menu">
+                                {% show_menu 0 1 100 100 "scrolled_menu.html" %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+<!--                 <div class="block-right">
+                    <div class="search-widget search-widget-1">
+                        <div class="icon-search">
+                            <i class="icon_search"></i>
+                        </div>
+                        <input class="animated" type="text" placeholder="Search" />
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- header / end-->
+    </header>
+    {% block content %}
+    {% endblock content %}
+   
+<footer id="footer">
+    <div class="footer footer-1 bg-black">
+        <div class="top-footer p-t-50 p-b-50">
+            <div class="container">
+                <div class="row">
+                {% static_placeholder 'footer' %}
+                </div>
+            </div>
+        </div>
+        {% static_placeholder 'base footer' %}
+    </div>
+</footer>
+
+
+   
+    <div id="up-to-top">
+        <i class="fa fa-angle-up"></i>
+    </div>
+    <!--
+    Javascripts
+    ==================================================
+    -->
+    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="/static/vendor/headroom/headroom.min.js"></script>
+    <script src="/static/vendor/matchHeight/dist/jquery.matchHeight-min.js"></script>
+    <script src="/static/vendor/SmoothScroll/SmoothScroll.js"></script>
+    <script src="/static/vendor/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/vendor/isotope/isotope.pkgd.min.js"></script>
+    <script src="/static/vendor/plyr/plyr.min.js"></script>
+    <script src="/static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="/static/vendor/jquery-accordion/js/jquery.accordion.js"></script>
+    <script src="/static/vendor/chosen/chosen.jquery.js"></script>
+    <script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="/static/vendor/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="/static/vendor/paroller.js/jquery.paroller.min.js"></script>
+    <script src="/static/vendor/retinajs/dist/retina.min.js"></script>
+    <script src="/static/js4/owl-custom.js"></script>
+    <script src="/static/js4/main.js"></script>
+    <script src="/static/js4/switcher-custom.js"></script>
+    <script src="/static/vendor/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="/static/vendor/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    {% render_block "js" %}
+
+    <!--
+    | (Load Extensions only on Local File Systems !
+    | The following part can be removed on Server for On Demand Loading)
+    -->
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="/static/js4/revo-slider-custom.js"></script>
+
+    <!--
+    End Document
+    ==================================================
+    -->
+</body>
+
+</html>
