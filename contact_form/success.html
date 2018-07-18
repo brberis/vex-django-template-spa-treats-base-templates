@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% load re_paginator thumbnail amenities i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block content %}   
+
+{% render_placeholder contact_info.feature language placeholder_language %}
+
+    <section class="section bg-white p-t-70 p-b-40">
+        <div class="container">
+        <h3 class="text-block text-black text-bold text-med m-b-40">{{ form_info.success_title }}</h2>
+                <hr class="heading_space"> 
+
+        <p>{{ form_info.success_message }</p>
+        </div>
+        {% endif %}
+    </section>
+
+
+
+
+{% render_placeholder contact_info.content language placeholder_language %}
+
+{% endblock %}

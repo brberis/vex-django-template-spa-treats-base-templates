@@ -1,0 +1,12 @@
+{% load i18n cms_tags sekizai_tags %}
+<div class="Recent-news sidebar-widget sidebar">
+    <div class="tags-box mgn-btm clearfix">
+        <h2 class="title">Tags</h2>
+        {% for tag in tags %}
+        <a href="#" class="tags">{{tag}}</a>
+        {% empty %}
+        <p>{% trans "No items available" %}</p>
+        {% endfor %}
+
+    </div>
+</div>

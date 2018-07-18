@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+{% load cms_tags sekizai_tags menu_tags easy_thumbnail social_share i18n %}
+
+{% block content %}
+
+
+    <div class="heading-page heading-page-1 bg-cover" style="background: url({% easy_thumbnail blog.image 1349x397 crop %}) center center no-repeat;">
+        <div class="container">
+            <ul class="breadcrumbs">
+                {% block breadcrumb %}
+                {% show_breadcrumb %}
+                {% endblock %}
+ 
+
+            <ul>
+            <h3 class="title pull-right">{{ blog.title|safe }}</h3>
+        </div>
+    </div>
+    <br>
+   <div class="page-content p-b-70">
+        <div class="container">
+            <div class="row" >
+                <div class="col-md-9">
+                    <section class="section post-section-2 p-r-40">
+                        {% for article in object_list %}
+                        <div class="post-header">
+                            <h3 class="text-block text-black text-bold text-med-large m-b-25"><a href="{{article.slug}}">{{article.title}}</h3>
+                            <div class="post-info m-b-30">
+                                <p class="text-block">{% trans "by" %}
+                                    <a href="#">{{article.author}}</a>
+                                    <span>|</span>{{article.publishing_date|date}}
+                                    <span>|</span>
+                                    {% for tag in article.tags.all %}
+                                    <a href="#">{{tag}}</a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            {% if article.featured_image %}
+                            <div class="plyr-video m-b-50">
+                                <img src="{% easy_thumbnail article.featured_image 830x250 crop %}" class="img-responsive" alt="{{article.title}}" />
+                            </div>
+                            {% endif %}
+
+                                {{article.article_content|safe|truncatechars:500}}
+                            }
+                        </div>
+                        <div class="post-footer clearfix m-b-50">
+                            <div class="block-right">
+                                <ul class="tags">
+                                    {% for tag in article.tags.all %}
+                                    <li class="tag">
+                                        <a href="#">{{tag}}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                           
+                        </div>
+                        {% endfor %}
+
+
+
+
+
+                    </section>
+                </div>
+                <div class="col-md-3" style="padding-top: 15px">
+
+
+                {% static_placeholder "sidebar_blog" %}
+       
+                </div>
+            </div>
+
+        </div>
+    </div>    
+<!-- Blog Body End -->
+       
+
+
+{% endblock %}
+
+
+
+
+
+
+

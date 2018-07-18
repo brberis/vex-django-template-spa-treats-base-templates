@@ -1,0 +1,13 @@
+{% load i18n cms_tags menu_tags sekizai_tags easy_thumbnail  %}
+{% for b in banner %}
+    <div class="heading-page heading-page-1 bg-cover" style="background: url({% easy_thumbnail b.image 1349x397 crop %}) center center no-repeat;">
+        <div class="container">
+            <ul class="breadcrumbs">
+                {% block breadcrumb %}
+                {% show_breadcrumb %}
+                {% endblock %}
+            </ul>
+            <h3 class="title">{{b.title|safe}}</h3>
+        </div>
+    </div>
+{% endfor %}

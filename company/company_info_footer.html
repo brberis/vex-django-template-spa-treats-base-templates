@@ -1,0 +1,22 @@
+{% load i18n cms_tags sekizai_tags %}
+                        <div class="col-md-3">
+                            <div class="footer-block-2">
+                                <div class="title">
+                                    <h3>{{instance.title}}</h3>
+                                </div>
+                                <div class="contact-list">
+                                    <ul>
+                            {% for branch in branches %}
+                            <li>{{branch.address|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.region|default_if_none:""}}, {{branch.zipcode|default_if_none:""}}, {{branch.country|default_if_none:""}}</li>
+                            {% endfor %}
+                            {% for phone in phones %}
+                            <li><a href="tel:{{phone.phone}}" style="color: lightgrey">{{phone.phone}}</a></li>
+                            {% endfor %}
+                            {% for email in emails %}
+                            <li><a href="mailto:{{email.email}}" style="color: lightgrey">{{email.email}}</a></li>
+                            {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+

@@ -1,0 +1,38 @@
+{% load i18n cms_tags sekizai_tags %}
+
+                        <div class="col-md-3">
+                            <div class="footer-block-3">
+                                <div class="title">
+                                    <h3>{{instance.title}}</h3>
+                                </div>
+                                <div class="social-list">
+                                    <ul class="horizontal-list">
+                                        {% if company.facebook %}
+                                        <li class="social-item-2 social-item-1">
+                                            <a href="{{company.facebook}}" class="fa fa-facebook"></a>
+                                        </li>
+                                        {% endif %}
+                                        {% if company.twitter %}
+                                        <li class="social-item-2 social-item-1">
+                                            <a href="{{company.twitter}}" class="fa fa-twitter"></a>
+                                        </li>
+                                        {% endif %}
+                                        {% if company.google %}
+                                        <li class="social-item-2 social-item-1">
+                                            <a href="{{company.google}}" class="fa fa-google-plus"></a>
+                                        </li>
+                                        {% endif %}
+                                        {% if company.linkedin %}
+                                        <li class="social-item-2 social-item-1">
+                                            <a href="{{company.linkedin}}" class="fa fa-linkedin"></a>
+                                        </li>
+                                        {% endif %}
+                                        {% if company.instagram %}
+                                        <li class="social-item-2 social-item-1">
+                                            <a href="{{company.instagram}}" class="fa fa-instagram"></a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>

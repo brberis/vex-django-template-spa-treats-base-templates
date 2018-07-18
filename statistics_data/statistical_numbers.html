@@ -1,0 +1,19 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+    <div class="section bg-parallax p-t-100 p-b-70 bg-cover" style="background: url(&quot;{% easy_thumbnail instance.parallax_image 1900x1274 crop %}&quot;) center center no-repeat;" data-paroller-type="background" data-paroller-factor="-0.3" data-paroller-direction="vertical">
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row">
+            	{% for data in statistical_numbers %}
+                <div class="col-md-3 col-sm-3">
+                    <div class="number-box light">
+                        <span class="number">
+                        <span class="counterUp">{{data.number}}</span>
+                        <span class="sub">{{data.unit}}</span>
+                        </span>
+                        <span class="title">{{data.name}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>

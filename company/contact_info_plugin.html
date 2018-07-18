@@ -1,0 +1,30 @@
+{% load i18n cms_tags sekizai_tags  %}
+
+
+
+{% if instance.style == "Short" %}
+
+<div class="banner-contact m-b-50">
+        <h4>{{instance.name}}</h2>
+
+
+        <p class="m-b-20"> {{instance.message}}</p>
+        {% for phone in phones %}
+        <p><strong>{% trans "Phone" %}: </strong><a href="tel:{{phone.phone}}" style="color: white;">{{phone.phone}}</a></p>
+        {% endfor %}
+        {% for email in emails %}
+        <p><strong>{% trans "Email" %}:</strong> <a href="mailto:{{email.email}}" style="color: white;">{{email.email}}</a></p>
+        {% endfor %}
+        {% for branch in branches %}
+        <p><strong>{{branch.name|default_if_none:""}}:</strong><br> {{branch.address|default_if_none:""}} <br>{{branch.city|default_if_none:""}}</p>
+        {% endfor %}
+
+        <div style="padding-top: 20px">
+                    <a class="au-btn au-btn-border au-btn-border-light au-btn-block" href="{{instance.button_action}}">{{instance.button_label}}</a>
+
+        </div>
+
+      </div>  
+
+{% endif %}
+

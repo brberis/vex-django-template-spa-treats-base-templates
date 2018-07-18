@@ -1,0 +1,35 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+    
+    <!-- Testimonials / start-->
+    <section class="section bg-grey-light p-t-70 p-b-50">
+        <div class="container">
+            <div class="relative section-testimonials-wrapper-1">
+                <div class="heading-section heading-section-1 dark">
+                    <h3>{{instance.title}}</h3>
+                </div>
+                <div class="owl-carousel dark nav-style-1" data-carousel-margin="30" data-carousel-nav="true" data-carousel-loop="true" data-carousel-autoplay="true">
+                   {% for review in reviews %}
+
+                    <div class="image-card image-card-2">
+                        <div class="card-top">
+                            <div class="avatar">
+                                <a href="#">
+                                    <img src="{% easy_thumbnail review.image 50x50 crop %}" alt="{{ review.client_name }}" />
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span class="name">{{ review.client_name }}</span>
+                                <span class="job-title">{{ review.title }}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="content">
+                                <p>{{ review.review }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>

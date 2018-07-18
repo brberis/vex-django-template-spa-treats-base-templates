@@ -1,0 +1,37 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+{% for feature_listed in feature_list %}
+{% if forloop.counter == 1 %}
+<div class="section-5 content-area">
+    <div class="container">
+        <div class="main-title">
+            <h1>{{feature_listed.title}}</h1>
+            <p>{{feature_listed.description}}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                {% for feature in features %}
+                <div class="hotel-our-service">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="{{feature.icon_class}}"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4>{{feature.title}}</h4>
+                            <p>{{ feature.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                <div class="hotel-our-service-pic">
+                     <img src="{% easy_thumbnail feature_listed.featured_image 360x819 crop %}" alt="360x819" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endfor %}

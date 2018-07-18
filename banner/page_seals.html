@@ -1,0 +1,23 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+<section class="section bg-grey-light p-t-70 p-b-70">
+        <div class="container">
+            <div class="relative">
+                <div class="p-b-15">
+                    <div class="heading-section heading-section-1 dark">
+                        <h3>{{instance.title}}</h3>
+                    </div>
+                </div>
+                <div class="owl-carousel dark nav-style-1" data-carousel-margin="30"{% if seals.length > 5 %} data-carousel-nav="true" data-carousel-loop="true" data-carousel-items="5" {% else %} data-carousel-nav="false" data-carousel-loop="false" data-carousel-items="seals.length" {% endif %}data-carousel-autoplay="true">
+                    {% for seal in seals %}
+                    <div class="icon-box icon-box-3">
+                        <div class="icon">
+                            <a href="{{seal.url}}}">
+                                <img src="{% easy_thumbnail seal.image 210x100 crop %}" alt="{{seal.name}}" />
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>

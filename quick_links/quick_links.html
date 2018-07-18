@@ -1,0 +1,46 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail %}
+
+						<div class="col-md-6">
+                            <div class="footer-block-1">
+                            	{% if instance.footer_logo == True %}
+                                <div class="logo">
+                					<img src="{% easy_thumbnail company.footer_logo 250x55 crop %}" alt="{{company.fantasy_name}}" />
+                                </div>
+                                {% else %}
+                                <div class="title">
+                                    <h3>{{instance.title}}</h3>
+                                </div>
+                                {% endif %}
+                                <div class="quick-link">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul>
+                                            	{% for link in links %}
+                                            	{% if forloop.counter < 4 %}
+                                                <li>
+                                                    <a href="{{link.url}}">{{link.title}}</a>
+                                                </li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% if links|length > 3 %}
+                                        <div class="col-md-6 col-sm-6">
+                                            <ul>
+                                           	    {% for link in links %}
+                                            	{% if forloop.counter > 3 %}
+                                                <li>
+                                                    <a href="{{link.url}}">{{link.title}}</a>
+                                                </li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+

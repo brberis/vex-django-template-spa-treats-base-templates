@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags sekizai_tags easy_thumbnail social_share i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block title %} {{ article.title }} {% endblock %}
+{% block extra_head_tags %}
+<meta property="og:type"  content="article" />
+<meta property="og:url" content="https://" />
+<meta property="og:site_name" content="CNBC" />
+<meta property="og:image" itemprop="image" content="http://{{ request.get_host }}{% easy_thumbnail article.featured_image 1910x1000 crop %}" />
+<meta property="og:title" content="{{ article.title|force_escape }}" />
+<meta property="og:description" content="{{article.article_content|force_escape|truncatechars:200}}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@{{company.twitter}}" />
+<meta name="twitter:url" content="http://{{ request.get_host }}/{{LANGUAGE_CODE}}{{blog.blog_url}}/{{article.slug}}" />
+<meta name="twitter:creator" content="@{{author.twitter}}" /> 
+<meta name="twitter:title" content="{{ article.title|force_escape }}" />
+<meta name="twitter:description" content="{{article.article_content|force_escape|truncatechars:200}}" /> 
+<meta name="twitter:image" content="http://{{ request.get_host }}{% easy_thumbnail article.featured_image 750x312 crop %}" />
+<link rel="amphtml" href="//{{ request.get_host }}/{{LANGUAGE_CODE}}{{blog.blog_url}}/{{article.slug}}">
+<meta property="article:publisher" content="{{company.facebook}}" />
+<meta property="article:published_time" content="{{article.is_published}}" />
+<meta property="article:author" content="{{company.facebook}}" />
+<meta name="author" content="{{article.author}}" />
+<link href="{{company.google}}" rel="author" />
+<meta property="article:section" content="{{article.category|force_escape}}" />
+{% for tag in article.tags.all %}
+<meta property="article:tag" content="{{tag|force_escape}}" />
+{% endfor %}
+<meta name="news_keywords" content="{% for tag in article.tags.all %}
+{{tag|force_escape}},{% endfor %}" />
+<!-- structured data !-->
+<meta itemprop="dateCreated" content="{{article.is_published}}" />
+<meta itemprop="sourceOrganization" content="{{company.brand}}" />
+{% if LANGUAGE_CODE == 'es' %}
+<meta itemprop="inLanguage" content="en-ES" />
+{% endif %}
+{% if LANGUAGE_CODE == 'en' %}
+<meta itemprop="inLanguage" content="en-US" />
+{% endif %}
+{% if LANGUAGE_CODE == 'pt' %}
+<meta itemprop="inLanguage" content="pt-BR" />
+{% endif %}
+<meta itemprop="specialty" content="{% for tag in article.tags.all %}
+{{tag|force_escape}},{% endfor %}" />
+<meta itemprop="primaryImageOfPage" content="http://{{ request.get_host }}{% easy_thumbnail article.featured_image 750x312 crop %}" />
+<meta itemprop="isFamilyFriendly" content="true" />
+<meta itemprop="contentRating" content="NR" />
+<meta name="tp:PreferredRuntimes" content="universal" />
+<meta name="tp:PreferredFormats" content="M3U,MPEG4" />
+<meta name="tp:initialize" content="false" />
+<script type="application/ld+json">{
+        "@context": "https://schema.org","@type": "{{article.category|force_escape}}","description": "{{article.article_content|force_escape|truncatechars:200}}","mainEntityOfPage": "http://{{ request.get_host }}/{{LANGUAGE_CODE}}{{blog.blog_url}}/{{article.slug}}","headline": "{{ article.title|force_escape }}","dateCreated": "{{article.is_published}}","datePublished": "{{article.is_published}}","author": {"@type": "Person","name": "{{article.author}}"},"creator": ["{{article.author}}"],"publisher": {"@type": "Organization","name": "{{company.brand}}","logo": {"@type": "ImageObject","url": "http://{{ request.get_host }}{% easy_thumbnail company.main_logo 85x50 %}","width": 85,"height": 50}},"image":{"@type": "ImageObject","url": "http://{{ request.get_host }}{% easy_thumbnail article.featured_image 1910x1000 crop %}","width": 1910,"height": 1000},"thumbnailUrl": "http://{{ request.get_host }}{% easy_thumbnail article.featured_image 750x312 crop %}","articleSection": "{{article.category|force_escape}}","url": "http://{{ request.get_host }}/{{LANGUAGE_CODE}}{{blog.blog_url}}/{{article.slug}}"}</script>
+        <meta name='parsely-metadata' content='{"originalImage": "http://{{ request.get_host }}{% easy_thumbnail article.featured_image 750x312 crop %}"}'>
+
+
+
+{% endblock %}
+{% block content %}
+
+
+    <div class="heading-page heading-page-1 bg-cover" style="background: url({% easy_thumbnail blog.image 1349x397 crop %}) center center no-repeat;">
+        <div class="container">
+            <ul class="breadcrumbs">
+                {% block breadcrumb %}
+                {% show_breadcrumb %}
+                {% endblock %}
+                <li>
+                    <a href ="/blog">blog</a>
+                </li>
+                <li>
+                    {{article.title}}
+                </li>
+            <ul>
+            <h3 class="title pull-right">{{blog.title|safe}}</h3>
+        </div>
+    </div>
+    <br>
+    <div class="page-content p-b-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <section class="section post-section-2 p-r-40">
+                        <div class="post-header">
+                            <h3 class="text-block text-black text-bold text-med-large m-b-25">{{article.title}}</h3>
+                            <div class="post-info m-b-30">
+                                <p class="text-block">{% trans "by" %}
+                                    <a href="3">{{article.author}}</a>
+                                    <span>|</span>{{article.publishing_date|date}}
+                                    <span>|</span>
+                                    {% for tag in article.tags.all %}
+                                    <a href="#">{{tag}}</a>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="plyr-video m-b-50">
+                                <img src="{% easy_thumbnail article.featured_image 830x350 crop %}" class="img-responsive" alt="{{article.title}}" />
+                            </div>
+                                {{article.article_content|safe}}
+                        </div>
+                        <div class="post-footer clearfix m-b-50">
+                            <div class="block-left">
+                                <ul class="tags">
+                                    {% for tag in article.tags.all %}
+                                    <li class="tag">
+                                        <a href="#">{{tag}}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="block-right">
+                                <div class="social-list">
+                                    <ul class="horizontal-list">
+                                        <li class="social-item-3 social-item-1 text">
+                                            <span>{% trans "SHARE" %}</span>
+                                        </li>
+                                        <li class="social-item-3 social-item-1">
+                                            {% post_to_facebook object_or_url " <a></a>" %}
+                                            
+                                        </li>
+          
+                                    <li class="social-item-3 social-item-1">
+                                        {% post_to_twitter " " object_or_url "<a></a>" %}
+                                    </li>
+                                    <li class="social-item-3 social-item-1">
+                                        {% post_to_gplus object_or_url " <a></a>" %}
+                                    </li>
+                                    <li class="social-item-3 social-item-1">
+                                        {% post_to_linkedin " " object_or_url " <a></a>" %}
+                                    </li>
+                                    <li class="social-item-3 social-item-1">
+                                        {% post_to_reddit " " object_or_url " <a></a>" %}
+                                    </li>
+                                    <li class="social-item-3 social-item-1">
+                                        {% send_email " " object_or_url " <a></a>" %}
+                                    </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+<!--                         <div class="post-author bg-grey-light m-b-60">
+                            <div class="avatar">
+                                <a href="#">
+                                    <img src="images/avatar-04.jpg" alt="post author">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h4 class="text-block text-bold text-med-sm">
+                                    <a class="text-black" href="#">Tammy Ramos</a>
+                                </h4>
+                                <p class="text-block">Nunc risus ex, tempus quis purus ac, tempor consequat ex. Vivamus sem magna, maximus at est id, maximus aliquet nunc.</p>
+                            </div>
+                        </div> -->
+
+
+
+
+
+
+                    </section>
+                </div>
+                <div class="col-md-3" style="padding-top: 15px">
+
+            	{% static_placeholder "sidebar_article" %}
+       
+                </div>
+            </div>
+
+        </div>
+    </div>    
+<!-- Blog Body End -->
+       
+
+
+
+
+
+
+
+{% endblock %}
+

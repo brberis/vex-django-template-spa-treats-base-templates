@@ -1,0 +1,14 @@
+ {% load i18n cms_tags sekizai_tags page_meta_tags %}
+
+<h4 class="text-block text-bold text-med m-b-30">{% trans "Categories" %}</h4>
+<ul class="sidebar-lists sidebar-lists-1 m-b-50">
+    <li>
+        <a href="?cat=all">{% trans "All" %}</a>
+    </li>
+
+    {% for category in categories %}
+    <li>
+        <a href="?category={{category.id}}">{{category.name}}</a>
+    </li>
+    {% endfor %}
+</ul>

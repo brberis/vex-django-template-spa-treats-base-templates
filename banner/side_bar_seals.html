@@ -1,0 +1,22 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+<div class="contact-details">
+                    <!-- Header-->
+                    <div class="header">
+                    <h2>{{instance.title}}</h2>
+                    {% for seal in seals %}
+                    {% if seal.html_code %}
+                    </div>
+                    <div class="gallery-item">
+                    	{{ seal.html_code|safe }}
+                    </div>
+                    {% endif%}
+                    {% if seal.image %}
+                    <div class="gallery-item">
+                        <a href="{{seal.url}}">
+                            <img src="{% easy_thumbnail seal.image 79x79 crop %}" alt="gallery-2">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+   </div>

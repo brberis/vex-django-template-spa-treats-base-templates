@@ -1,0 +1,35 @@
+ {% load i18n cms_tags easy_thumbnail sekizai_tags page_meta_tags %}
+
+
+    <section class="section p-t-70 p-b-30 bg-white">
+        <div class="container">
+            <div class="relative">
+                <div class="heading-section heading-section-1 dark">
+                    <h3>{% trans "Recent Articles" %} </h3>
+                </div>
+                <div class="owl-carousel dark nav-style-1" data-carousel-margin="45" data-carousel-nav="true" data-carousel-loop="true">
+                    {% for article in article_list %}
+                    <div class="image-card image-card-4">
+                        <div class="image">
+                            <a href="/{{request.LANGUAGE_CODE}}/{{instance.current_page}}/{{article.slug}}">
+                                <img src="{% easy_thumbnail article.featured_image 360x202 crop %}" alt="{{article.title}}" />
+                            </a>
+                        </div>
+                        <div class="date">
+                            <span>{{article.publishing_date|date}}</span>
+                        </div>
+                        <h3 class="title">
+                            <a href="/{{request.LANGUAGE_CODE}}/{{instance.current_page}}/{{article.slug}}">{{article.title}}</a>
+                        </h3>
+                        <div class="content">
+                            <p>{{article.article_content|safe|truncatechars:250}}</p>
+                        </div>
+                        <div class="link">
+                            <a href="/{{request.LANGUAGE_CODE}}/{{instance.current_page}}/{{article.slug}}">{% trans "Continue reading" %}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>

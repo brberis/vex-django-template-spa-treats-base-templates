@@ -1,0 +1,39 @@
+{% load i18n cms_tags sekizai_tags %}
+
+    <div id = "quick_contact" class="section bg-black p-t-80 p-b-80">
+        <div class="container">
+
+        <form action="/es/#quick_contact" method="post">{% csrf_token %} 
+        {% if not form_info %}
+        <p class="text-block text-grey text-med m-b-45 text-center p-l-100 p-r-100">{% trans "Thank you for contacting us." %}</p>
+        {% else %}
+            <p class="text-block text-grey text-med m-b-45 text-center p-l-100 p-r-100">{{form_info.message}}</p>
+            
+            <div class="au-form-group">
+                <div class="au-form-col-3 p-r-5">
+                    <div class="au-select">
+                        <select class="chosen-select" name="message">
+                            <option value="1" disabled selected>{% trans "How can we help?" %} *</option>
+                            {% for reason in form_info.reasons.all %}
+                            <option value="{{reason.reason}}">{{reason.reason}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="au-form-col-3 p-r-5">
+                    <input class="au-input" name="name" type="text" required placeholder="{% trans 'Your Name:' %} *">
+                </div>
+                <div class="au-form-col-3 p-r-5">
+                    <input class="au-input" name="phone" type="text" required placeholder="{% trans 'Phone Number:' %} *">
+                </div>
+                <input type="hidden" name="quick_contact" value="True">
+
+                <div class="au-form-col-3">
+                    <input class="au-input-submit au-btn au-btn-primary au-btn-large btn-block" type="submit" value="{% trans 'Submit' %}">
+                </div>
+
+            </div>
+            {% endif %}
+        </form>
+        </div>
+    </div>

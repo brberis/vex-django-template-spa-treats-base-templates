@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% load  i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block content %}   
+
+{% render_placeholder form_info.feature language placeholder_language %}
+
+    <section class="section bg-white p-t-70 p-b-40">
+        <div class="container">
+       {% if success == True %}
+        <h3 class="text-block text-black text-bold text-med m-b-40">{{ form_info.success_title }}</h2>
+                <hr class="heading_space"> 
+
+        <p>{{ form_info.success_message }}</p>
+        {% endif %}
+        {% if success == "Error" %}
+        <h3 class="text-block text-black text-bold text-med m-b-40">{% trans "Form Error" %}</h2>
+                <hr class="heading_space"> 
+
+        <p>{% trans "There was an error. Please try again" %}</p>
+        {% endif %}
+        {% if success == 0 %}
+            <h3 class="text-block text-black text-bold text-med m-b-40">{{ form_info.title }}</h3>
+            <div class="messages" id="status"> <p>{{ form_info.message }}</p></div>
+            <form method="post" action="" name="contact" id="contact-form" role="form" data-toggle="validator">{% csrf_token %} 
+                <div class="au-form-group">
+                    <div class="au-form-col-4 form-group">
+                        <div class="help-block with-errors"></div>
+                        <input class="au-input au-input-2" type="text" placeholder="{% trans 'Enter name' %}" id="name" name="name" required>
+                    </div>
+                    <div class="au-form-col-4 form-group">
+                        <div class="help-block with-errors"></div>
+                        <input class="au-input au-input-2" type="email" placeholder="{% trans 'Enter email' %}" id="email" name="email" required>
+                    </div>
+                    <div class="au-form-col-4 form-group">
+                        <div class="help-block with-errors"></div>
+                        <input class="au-input au-input-2" type="tel" placeholder="{% trans 'Enter phone' %}" id="phone" name="phone" required data-error="Valid Phone is required.">
+                    </div>
+                </div>
+                <div class="form-group m-b-0">
+                    <div class="help-block with-errors"></div>
+                    <textarea class="au-textarea" placeholder="{% trans 'Write message' %}" style="height: 170px;" id="msg" name="msg" required data-error="Please, leave us a message."></textarea>
+                </div>
+                <input class="au-btn au-btn-primary" type="submit" id="contactBtn" value="Submit">
+            </form>
+        </div>
+        {% endif %}
+    </section>
+   
+    {% render_placeholder form_info.content language placeholder_language %}
+
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load i18n cms_tags easy_thumbnail sekizai_tags %}
+
+
+{% for feature_description in features_description %}
+    <br>
+    <br>
+        <div class="short-intro-inner">
+            <!-- Image-->
+
+            <span class="crown"><i class="{{feature_description.icon_class}}"></i></span>
+<!--             <h1><span>It's time to enjoy our</span> SPA!</h1>
+ -->            <h1>{{feature_description.title|safe}}</h1>
+
+            <p>{{feature_description.message|safe}}</p>
+
+            <div class="short-intro-item-image">
+                <!-- <img src="http://placehold.it/550x157" class="img-responsive" alt="spa"> -->
+                <img src="{% easy_thumbnail feature_description.image 974x540 crop %}" alt="{{feature_description.title}}" class="img-responsive">
+
+            </div>
+            <div>
+                <br>
+                {% if feature_description.button_label %}
+                    <a href="{{feature_description.button_action}}" class="btn btn-fill btn-md">{{feature_description.button_label}}</a>
+                {% endif %}  
+            </div>    
+        </div>
+    <br>
+    <br>
+        <br>
+    <br>
+        <br>
+    <br>
+{% endfor %}
+

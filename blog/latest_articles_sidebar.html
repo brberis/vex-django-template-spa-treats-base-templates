@@ -1,0 +1,23 @@
+ {% load i18n cms_tags easy_thumbnail sekizai_tags page_meta_tags %}
+<h4 class="text-block text-bold text-med m-b-40">{% trans "Recent Articles" %} </h4>
+                {% for article in article_list %}
+                {% if request.path != "/"|add:request.LANGUAGE_CODE|add:"/"|add:instance.current_page|add:"/"|add:article.slug|add:"/" %}
+                    <div class="image-card image-card-9">
+                        <div class="image">
+                            <a href="/{{request.LANGUAGE_CODE}}/{{instance.current_page}}/{{article.slug}}">
+                                <img src="{% easy_thumbnail article.featured_image 70x70 crop %}" alt="{{article.title}}" />
+                            </a>
+                        </div>
+                        <div class="content">
+                            <h3 class="title">
+                                <a href="/{{request.LANGUAGE_CODE}}/{{instance.current_page}}/{{article.slug}}">{{article.title}}</a>
+                            </h3>
+                            <span class="subtitle">{{article.publishing_date|date}}</span>
+                        </div>
+                    </div>
+                        {% endif %}
+                        {% empty %}
+                        <p>{% trans "No items available" %}</p>
+                        {% endfor %}
+
+

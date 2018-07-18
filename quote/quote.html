@@ -1,0 +1,9 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+
+    <div class="section bg-parallax p-t-120 p-b-120" style="background: url(&quot;{% easy_thumbnail quote.parallax_image 1900x1089 crop %}&quot;) no-repeat;" data-paroller-type="background" data-paroller-factor="-0.3" data-paroller-direction="vertical">
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <p class="text-block text-white text-center p-l-100 p-r-100 relative text-lead">{{ quote.quote }}</p>
+        </div>
+    </div>
+

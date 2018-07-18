@@ -1,0 +1,25 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+
+<section class="section why-choose-us-section-1 bg-cover p-t-90 p-b-75 bg-cover js-waypoint" style="background: url(&quot;{% easy_thumbnail statistical_bars.image 1900x492 crop %}&quot;) center center no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="heading-section heading-section-1 dark">
+                        <h3>{{statistical_bars.title}}</h3>
+                    </div>
+                    <p class="text-block m-b-25">{{statistical_bars.message}}</p>
+                    {% for data in statistical_bars.data.all %}
+                    <div class="progress-box progress-box-1 m-b-25">
+                        <p class="progress-label">{{data.name}}</p>
+                        <div class="au-progress au-progress-1">
+                            <div class="au-progress-bar" role="progressbar" data-transitiongoal="{{data.number}}">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>

@@ -1,0 +1,38 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+{% for b in side_banner %}
+                    <div class="thumbnail Products-box clearfix">
+                        <img src="{% easy_thumbnail b.image 360x225 crop %}" alt="{{b.title}}">
+                        <!-- detail -->
+                         <div class="caption detail">
+                            <!-- Header -->
+                            <header class="clearfix">
+                                <div class="pull-left">
+                                    <h5 class="title">
+                                        <a href="{{b.action_button}}">{{b.title}}</a>
+                                    </h5>
+                                    <ul class="custom-list">
+                                        <li>
+                                            <a href="{{b.action_button}}">{{b.small_title}}</a> 
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Price -->
+                                <div class="price">
+                                    <span>{{b.price}}</span>
+                                </div>
+                            </header>
+                            <!-- Paragraph -->
+                            <p>{{b.description}}</p>
+                            
+                            <!-- Btn Div-->
+                            <div class="btn-div">
+                                <a href="{{b.action_button}}">
+                                    <span class="read-more">{{b.label_button}}</span>
+                                    <span class="icon-arrow-right2 bg-danger">
+                                        <i class="fa fa-angle-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+{% endfor %}
