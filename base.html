@@ -10,25 +10,14 @@
 <html lang="{{LANGUAGE_CODE}}">
 
 <head>
-    <!--
-    Basic Page Needs
-    ==================================================
-    -->
+
     <meta charset="UTF-8">
         <title>{% block title %}{% page_attribute page_title %}{% endblock %}{% if seo.site_title %} - {{seo.site_title}}{% endif %}</title>
     {% block extra_head_tags %}{% endblock %}
-    <!--
-    Mobile Specific Metas
-    ==================================================
-    -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--
-    CSS
-    ==================================================
-    -->
+
     <link id="favicon" rel="shortcut icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   type="image/x-icon" />
     <link rel="icon"  type="image/x-icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   /> 
-    <!-- External CSS libraries -->
     {% render_block "css" %}
     <link href="/static/fonts/fonts.css" rel="stylesheet">
     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -250,10 +239,7 @@
     <div id="up-to-top">
         <i class="fa fa-angle-up"></i>
     </div>
-    <!--
-    Javascripts
-    ==================================================
-    -->
+
     <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/static/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
@@ -278,10 +264,7 @@
     <script src="/static/vendor/revolution/js/jquery.themepunch.revolution.min.js"></script>
     {% render_block "js" %}
 
-    <!--
-    | (Load Extensions only on Local File Systems !
-    | The following part can be removed on Server for On Demand Loading)
-    -->
+
     <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.video.min.js"></script>
     <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
     <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.actions.min.js"></script>
@@ -292,10 +275,7 @@
     <script type="text/javascript" src="/static/vendor/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
     <script src="/static/js/revo-slider-custom.js"></script>
 
-    <!--
-    End Document
-    ==================================================
-    -->
+
 </body>
 
 </html>
