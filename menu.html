@@ -2,17 +2,17 @@
 
 {% for child in children %}
     <li class="{% if child.ancestor %}ancestor{% endif %}
-        {% if child.selected %} active{% endif %}
+        {% if child.selected %} current_page_item {% endif %}
         {% if child.children %} dropdown{% endif %}">
         {% if child.children %}
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                {{ child.get_menu_title }} <span class="caret"></span>
+                {{ child.get_menu_title|safe }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
             </ul>
         {% else %}
-            <a href="{{ child.get_absolute_url }}"><span>{{ child.get_menu_title }}</span></a>
+            <a href="{{ child.get_absolute_url }}">{{ child.get_menu_title|safe }}</a>
         {% endif %}
         
     </li>

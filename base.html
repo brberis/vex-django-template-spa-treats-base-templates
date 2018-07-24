@@ -15,14 +15,14 @@
         <title>{% block title %}{% page_attribute page_title %}{% endblock %}{% if seo.site_title %} - {{seo.site_title}}{% endif %}</title>
     {% block extra_head_tags %}{% endblock %}
 
-    link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 <!-- **CSS - stylesheets** -->
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/style.css?ver=1" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/css/responsive.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/static/css/nivo-slider.css" rel="stylesheet"  type="text/css" media="screen"/>
     <link id="favicon" rel="shortcut icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   type="image/x-icon" />
-    <link rel="icon"  type="image/x-icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   /> 
+    <link rel="icon"  type="/static/image/x-icon" href="{% easy_thumbnail seo.favicon 16x16 crop %}"   /> 
     {% render_block "css" %}
 
 </head>
@@ -37,65 +37,20 @@
         <!-- **Top-Menu** -->
         <div id="top-menu">
             <ul class="menu">
-                <li class="current_page_item"> <a href="index.html" title=""> <span> Its home </span> Home </a>                   
-                    <ul>
-                        <li> <a href="index-v1.html" title=""> Home II Revolution slider </a>  </li>  
-                    </ul>                                 
-                </li>                                                        
-                <li> <a href="aboutus.html" title=""> <span> Who we are </span> About Us </a> 
-                    <ul>
-                        <li> <a href="htmlstyles.html" title=""> HTML Styles </a>  </li>
-                        <li> <a href="popular-procedures.html" title=""> Popular Procedures </a>  </li>
-                        <li> <a href="404.html" title=""> 404 </a>  </li>
-                    </ul>                
-                </li>
-                <li> <a href="services.html" title=""> <span> What we offer </span> Services </a> 
-                    <ul>
-                        <li> <a href="services.html" title=""> Fullwidth </a>  </li>
-                        <li> <a href="services-with-sidebar.html" title=""> With Sidebar </a>  </li>
-                    </ul>  
-                </li>
-                <li> <a href="therapists.html" title=""> <span> Know us </span> Therapists </a> </li>
-                <li> <a href="blog.html" title=""> <span> What's up </span> Blog </a> </li>
-                <li> <a href="gallery-fourcolumn.html" title=""> <span> Visual look </span> Gallery </a> 
-                
-                    <ul>
-                        <li> <a href="gallery-fourcolumn.html" title=""> Four Column </a> 
-                            <ul>
-                                <li> <a href="gallery-fourcolumn.html" title=""> Without Sidebar </a> </li>
-                                <li> <a href="gallery-fourcolumn-with-sidebar.html" title=""> With Sidebar </a> </li>
-                            </ul>
-                        </li>
-                        <li> <a href="gallery-threecolumn.html" title=""> Three Column </a> 
-                            <ul>
-                                <li> <a href="gallery-threecolumn.html" title=""> Without Sidebar </a> </li>
-                                <li> <a href="gallery-threecolumn-with-sidebar.html" title=""> With Sidebar </a> </li>
-                            </ul>
-                        </li>
-                        <li> <a href="gallery-twocolumn.html" title=""> Two Column </a> 
-                            <ul>
-                                <li> <a href="gallery-twocolumn.html" title=""> Without Sidebar </a> </li>
-                                <li> <a href="gallery-twocolumn-with-sidebar.html" title=""> With Sidebar </a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                
-                </li>
-                <li> <a href="booknow.html" title=""> <span> Why the wait </span> Book Now </a> </li>
-                <li> <a href="location.html" title=""> <span> We are here </span> Location </a> </li>
-            </ul>           
+                {% show_menu 0 1 100 100 "menu.html" %}
+            </ul>        
         </div><!-- **Top-Menu - End** -->
         
         <!-- **Logo** -->
         <div id="logo">
-            <a href="index.html" title=""> <img src="images/logo.png" alt="" title="" /> </a>
+            <a href="index.html" title=""> <img src="{% easy_thumbnail c_info.main_logo 352x131 %}" alt="" /></a>
         </div><!-- **Logo - End** -->
         
         <!-- **Searchform** -->
         <form action="#" id="searchform" method="get">
             <fieldset>
-                <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Enter Keyword' : this.value;" onfocus="this.value=(this.value=='Enter Keyword') ? '' : this.value;" value="Enter Keyword" alt="Search our site" class="text_input" />
-                <input name="submit" type="submit" class="button" value="" />
+<!--                 <input name="Search" type="text" onblur="this.value=(this.value=='') ? 'Enter Keyword' : this.value;" onfocus="this.value=(this.value=='Enter Keyword') ? '' : this.value;" value="Enter Keyword" alt="Search our site" class="text_input" />
+                <input name="submit" type="submit" class="button" value="" /> -->
             </fieldset>
         </form><!-- **Searchform - End** -->
         
@@ -104,30 +59,8 @@
 
 
 <!-- ** Home Slider** -->
-<div id="home-slider">
-    <div class="slider-container">
-    
-        <div class="slider-wrapper theme-default">    
-            <div id="slider" class="nivoSlider">
-                <img src="http://placehold.it/1200x555" alt="" title="#htmlcaption1" />
-                <img src="http://placehold.it/1200x555" alt="" title="" />
-                <img src="http://placehold.it/1200x555" alt="" title="#htmlcaption3" />
-            </div>
-            <div id="htmlcaption1" class="nivo-html-caption">
-                 <h2> Experience the real essence of spa </h2>
-                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In in massa urna, vitae vestibulum orci. Maecenas quis est sed mauris gravida mollis. </p>
-                <a href="popular-procedures.html" title=""> <span> Read More </span> </a>
-            </div>
-            <div id="htmlcaption3" class="nivo-html-caption">
-                 <h2> Hot stone massage or reflexology </h2>
-                <p> Sed augue lectus, sollicitudin sit amet hendrerit ut, convallis at libero. Duis quam arcu, tempus sed laoreet in, hendrerit mollis neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sit amet justo massa. Praesent commodo interdum lectus, a porta magna auctor nec. </p>
-                <a href="popular-procedures.html" title=""> <span> Read More </span> </a>
-            </div>    
-                    
-        </div>
-        
-    </div>
-</div><!-- **Home Slider - End** -->
+{% block content %}
+{% endblock content %}
 
 <!-- ** Main** -->
 <div id="main">
@@ -209,7 +142,7 @@
             </div>
             <div class="column one-third">
                 <h4 class="title"> <span> Gift a Friend </span> </h4>
-                <a href="" title=""> <img src="images/gift-card.png" alt="" title="" /> </a>
+                <a href="" title=""> <img src="/static/images/gift-card.png" alt="" title="" /> </a>
             </div>
             <div class="column one-third last">
                 <h4 class="title"> <span> Working Hours </span> </h4>
@@ -334,26 +267,26 @@
                     <ul>
                         <li> 
                             <a href="" title=""> 
-                                <img src="images/facebook-hover.png" alt="image" title="" />
-                                <img src="images/facebook.png" alt="image" title="" />                                
+                                <img src="/static/images/facebook-hover.png" alt="image" title="" />
+                                <img src="/static/images/facebook.png" alt="image" title="" />                                
                             </a> 
                         </li>
                         <li> 
                             <a href="" title=""> 
-                                <img src="images/twitter-hover.png" alt="image" title="" />
-                                <img src="images/twitter.png" alt="image" title="" />                                
+                                <img src="/static/images/twitter-hover.png" alt="image" title="" />
+                                <img src="/static/images/twitter.png" alt="image" title="" />                                
                             </a> 
                         </li>
                         <li> 
                             <a href="" title=""> 
-                                <img src="images/flickr-hover.png" alt="" title="" />
-                                <img src="images/flickr.png" alt="image" title="" />                                
+                                <img src="/static/images/flickr-hover.png" alt="" title="" />
+                                <img src="/static/images/flickr.png" alt="image" title="" />                                
                             </a> 
                         </li>
                         <li> 
                             <a href="" title=""> 
-                                <img src="images/youtube-hover.png" alt="" title="" />
-                                <img src="images/youtube.png" alt="image" title="" />                                
+                                <img src="/static/images/youtube-hover.png" alt="" title="" />
+                                <img src="/static/images/youtube.png" alt="image" title="" />                                
                             </a> 
                         </li>
                     </ul>  

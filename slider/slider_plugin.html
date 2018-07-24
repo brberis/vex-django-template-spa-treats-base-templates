@@ -1,32 +1,26 @@
 {% load i18n cms_tags easy_thumbnail sekizai_tags %}
 
-    <section>
-        <!-- START REVOLUTION SLIDER 5.0-->
-        <div class="slider-1">
-            <div class="rev_slider" id="js-slider" style="display:none;">
-                <ul>
-                  {% for slide in slide_list %}
-                    <li class="item-1" data-transition="fade">
-                        <!-- MAIN IMAGE-->
-                        <img class="rev-slidebg" src="{% easy_thumbnail slide.image 1900x550 crop %}" alt="{{slide.message_title_1|safe}}</" />
-                        <h3 class="tp-caption tp-resizeme caption-1" data-frames="[{&quot;from&quot;:&quot;y:50px;opacity:0;&quot;,&quot;speed&quot;:1500,&quot;to&quot;:&quot;o:1;&quot;,&quot;delay&quot;:900,&quot;ease&quot;:&quot;Power4.easeOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:500,&quot;to&quot;:&quot;y:-50px;opacity:0;&quot;,&quot;ease&quot;:&quot;Power2.easeIn&quot;}]"
-                        data-x="['center']" data-hoffset="['0', '0', '0', '0']" data-y="['middle']" data-voffset="['-100']" data-width="['770', '770', '770', '480']">{{slide.title|safe}}</h3>
-                        <div class="tp-caption tp-resizeme caption-2" data-frames="[{&quot;delay&quot;:1000,&quot;speed&quot;:1500,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;&quot;,&quot;mask&quot;:&quot;x:0px;y:[100%];s:inherit;e:inherit;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power2.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;auto:auto;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]"
-                        data-x="['center']" data-hoffset="['0', '0', '0', '0']" data-y="['center']" data-voffset="['0', '0', '0', '40']" data-width="['770', '770', '770', '480']">{{slide.message|safe}}</div>
-                        <div class="tp-caption tp-resizeme caption-3" data-frames="[{&quot;delay&quot;:2000,&quot;speed&quot;:1000,&quot;frame&quot;:&quot;0&quot;,&quot;from&quot;:&quot;opacity:0;&quot;,&quot;to&quot;:&quot;o:1;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;},{&quot;delay&quot;:&quot;wait&quot;,&quot;speed&quot;:500,&quot;frame&quot;:&quot;999&quot;,&quot;to&quot;:&quot;auto:auto;&quot;,&quot;ease&quot;:&quot;Power3.easeInOut&quot;}]"
-                        data-responsive="on" data-x="['center']" data-hoffset="['0', '0', '0', '0']" data-y="['center']" data-voffset="['100', '100', '100', '140']" data-width="['770', '770', '770', '480']">
-                        {% if slide.button_action_1 %}
-                            <a class="au-btn au-btn-primary m-r-5" href="{{slide.button_action_1}}">{{slide.button_label_1}}</a>
-                        {% endif %}
-                        {% if slide.button_action_2 %}
-                            <a class="au-btn au-btn-white m-l-5" href="{{slide.button_action_2}}">{{slide.button_label_2}}</a>
-                        {% endif %}
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+<div id="home-slider">
+    <div class="slider-container">
+    
+        <div class="slider-wrapper theme-default">    
+            <div id="slider" class="nivoSlider">
+                {% for slide in slide_list %}
+                <img src="{% easy_thumbnail slide.image 1200x555 crop %}" alt="" title="#htmlcaption{{ forloop.counter }}" />
+                {% endfor %}
             </div>
+            {% for slide in slide_list %}
+            <div id="htmlcaption{{ forloop.counter }}" class="nivo-html-caption">
+                 <h2>{{slide.title}} </h2>
+                <p> {{slide.message}} </p>
+                <a href="popular-procedures.html" title=""> <span> Read More </span> </a>
+            </div>
+            {% endfor %}
+
+                    
         </div>
-    </section>
-    <!-- section / start-->
+        
+    </div>
+</div><!-- **Home Slider - End** -->
+
 
