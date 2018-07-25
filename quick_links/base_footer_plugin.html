@@ -1,21 +1,12 @@
 {% load i18n cms_tags sekizai_tags %}
-
-            <div class="bot-footer">
-                <div class="container">
-                    <div class="block-inner p-t-35 p-b-60">
-                        <div class="block-left">
-                            <span>{{instance.copyright}}</span>
-                        </div>
-                        <div class="block-right">
-                            <div class="quick-link">
-                                <ul>{% for link in links %}
-                                    <li>
-                                        <a href="{{link.url}}">{{link.title}}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+            <div class="column one-fourth">
+                <div class="widget">
+                    <h2 class="widgettitle"> <span> {{instance.title}} </span> </h2>
+                    <ul>
+                        {% for link in links %}
+                        <li> <a href="{{link.url}}" title=""> {{link.title}} </a> </li>
+                        {% endfor%}
+                    </ul>
                 </div>
             </div>
+
