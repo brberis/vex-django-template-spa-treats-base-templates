@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% load re_paginator easy_thumbnail amenities i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block content %}   
+
+{% render_placeholder rooms.feature language placeholder_language %}
+
+<!-- Rooms Details Body Start-->
+<div class="rooms-details-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="hotel-details">
+                    <!-- Option Bar Start-->
+                    <div class="option-bar clearfix">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="section-heading">
+                                    <div class="media">
+<!--                                    <div class="media-left">
+                                            <i class="flaticon-royalty-crown"></i>
+                                        </div> -->
+                                       <div class="media-body hidden-xs">
+                                            <h4>{{rooms.title}}</h4>
+                                            <div class="border"></div>                                         
+                                            <p>{% trans "Reserve your unit now" %}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                 <div class="header-price">
+                                    <a href="/reservations" class="btn btn-fill btn-md">{% trans "Book Now" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Option Bar End-->
+                   
+                    <!-- Rooms Detail Slider Start-->
+                    <div class="rooms-detail-slider simple-slider">
+                        <div id="carousel-custom" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-outer">
+                                <!-- Wrapper for slides -->
+
+                                <div class="carousel-inner">
+                                    {% for imagen in rooms.images.all %}
+                                    {% if forloop.counter == 1 %}
+                                    <div class="item active">
+                                    {% else %}
+                                    <div class="item">
+                                    {% endif %}
+
+                                        <img src="{% easy_thumbnail imagen.filer_image 708x524 crop %}" class="thumb-preview img-resp-custom" alt="{{ rooms.title }}" >
+                                    </div>
+                                    {% endfor%}
+                                </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-custom" role="button" data-slide="prev">
+                                    <span class="slider-mover-left no-bg" aria-hidden="true">
+                                        <img src="/static/img/chevron-left.png" alt="chevron-left">
+                                    </span>
+                                    <span class="sr-only">{% trans "Previous" %}</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-custom" role="button" data-slide="next">
+                                    <span class="slider-mover-right no-bg" aria-hidden="true">
+                                        <img src="/static/img/chevron-right.png" alt="chevron-right">
+                                    </span>
+                                    <span class="sr-only">{% trans "Next" %}</span>
+                                </a>
+                            </div>
+
+                            <ol class="carousel-indicators thumbs visible-lg visible-md">
+                                {% for imagen in rooms.images.all %}
+                                <li data-target="#carousel-custom" data-slide-to="{{forloop.counter|add:'-1'}}" class=""><img src="{% easy_thumbnail imagen.filer_image 81x50 crop %}" alt="{{ rooms.title }}"></li>
+                                {% endfor%}
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- About Room start-->
+                    <div class="about-room">
+                        <h2 class="title">
+                            {{ rooms.title }}
+                        </h2>
+                        <p> {{ rooms.description }}</p>
+                    </div>
+                    <!-- About Room End-->
+
+                    <!-- Amenities Start-->
+                    <div class="amenities">
+                        <h2 class="title"> {% trans "Amenities" %} </h2>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 amenities-box">
+                                <ul>
+                                    {% amenities rooms as all_amenities %}
+                                    {% for ameni in all_amenities %}
+                                    {% if forloop.counter > 0 and forloop.counter < 6 %}
+                                    <li>
+                                        <i class="fa {{ ameni.1 }}"></i>{{ ameni.2 }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 amenities-box">
+                                <ul>
+                                    {% amenities rooms as all_amenities %}
+                                    {% for ameni in all_amenities %}
+                                    {% if forloop.counter > 5 and forloop.counter < 11 %}
+                                    <li>
+                                        <i class="fa {{ ameni.1 }}"></i>{{ ameni.2 }}
+                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                        {% render_placeholder rooms.content language placeholder_language %}
+
+                    <!-- About Room End-->
+                </div>
+                </div>
+                <div class="col-ld-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="details-sidebar">
+                                {% render_placeholder rooms.sidebar language placeholder_language %}
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+                </div>
+            </div>
+            <div class="col-ld-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="details-sidebar">
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ --><!-- Section-3 End-->
+
+
+
+
+
+{% endblock %}

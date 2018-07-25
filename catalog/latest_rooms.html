@@ -1,0 +1,77 @@
+{% load i18n cms_tags easy_thumbnail sekizai_tags %}
+
+
+
+                    
+<div class="Section-2 content-area ">
+    <div class="container">
+        {% if instance.title %}
+        <div class="main-title">
+            <h1>{{instance.title}}</h1>
+            <p>{{instance.message}}</p>
+        </div>
+        {% endif %}
+
+            <div class=" testimonials-2">
+                <div id="carouse2-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                    
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    {% for room in room_list %}
+                    {% if forloop.counter == 1 %}
+                    <div class="item active">
+                    {% endif %}
+                    {% if forloop.counter > 1 %}
+                    <div class="item ">
+                    {% endif %}
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-pad">
+                                {% for image in room.images.all|slice:":1" %}
+                                    <img   src="{% easy_thumbnail image.filer_image 585x389 crop %}" altsrc="{{ image.url }}" class="img-responsive" alt="{{image.name}}"  />
+                                {% endfor%}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 details">
+                                    <h3>{{room.title}}</h3>
+                                    <h4>{{room.type}} {% trans "Details" %}</h4>
+                                    <p style="padding-right: 30px">
+                                        {{ room.short_description }}</p>
+
+                                    <a href="{% page_url "rooms" %}{{ room.slug }}" class="btn btn-fill ">{% trans "View Room Details" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carouse2-example-generic" role="button" data-slide="prev">
+                    <span class="slider-mover-left" aria-hidden="true">
+                        <img src="/static/img/chevron-left.png" alt="left-chevron">
+                    </span>
+                    <span class="sr-only">{% trans "Previous" %}</span>
+                </a>
+                <a class="right carousel-control" href="#carouse2-example-generic" role="button" data-slide="next">
+                    <span class="slider-mover-right" aria-hidden="true">
+                        <img src="/static/img/chevron-right.png" alt="right-chevron">
+                    </span>
+                    <span class="sr-only">{% trans "Next" %}</span>
+                </a>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
