@@ -1,0 +1,27 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+
+    <section class="section bg-white p-t-60 p-b-50">
+        <div class="container">
+            <div class="relative">
+                <div class="heading-section heading-section-1 dark">
+                    <h3>{{instance.title}}</h3>
+                </div>
+                <div class="owl-carousel dark nav-style-1" data-carousel-margin="7" data-carousel-nav="true" data-carousel-loop="true" data-carousel-items="4">
+                  {% for facility in facilities %}
+                    <div class="image-card image-card-3">
+                        <div class="image">
+                            <img src="{% easy_thumbnail facility.image 287x215 crop %}" alt="{{facility.title}}" />
+                        </div>
+                        <h3 class="title">
+                            <a href="{{facility.url}}">
+                                <span>{{facility.title}}</span>
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </h3>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
