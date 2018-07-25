@@ -1,0 +1,22 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+    
+
+            <div class="column one-fourth">
+                <div class="widget">
+                    <h2 class="widgettitle"> <span> {{instance.title}} </span> </h2>
+                    
+                    <div class="testimonial-skin-carousel">
+                        <ul class="testimonial-carousel">
+                            {% for review in reviews %}
+                            <li>
+                                <blockquote>                                
+                                    {{ review.review }} 
+                                    <span> - E{{ review.client_name }} </span>
+                                </blockquote>
+                            </li>
+                            {% endfor %}
+                        </ul> 
+                    </div>
+                    
+                </div>
+            </div>

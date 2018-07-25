@@ -1,19 +1,19 @@
  {% load i18n cms_tags easy_thumbnail sekizai_tags page_meta_tags %}
-<h4 class="text-block text-bold text-med m-b-40">{% trans "Featured Articles" %} </h4>
-                    {% for article in featured_articles %}
-                    <div class="image-card image-card-9">
-                        <div class="image">
-                            <a href="{{article.slug}}">
-                                <img src="{% easy_thumbnail article.featured_image 70x70 crop %}" alt="{{article.title}}" />
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h3 class="title">
-                                <a href="{{article.slug}}">{{article.title}}</a>
-                            </h3>
-                            <span class="subtitle">{{article.publishing_date|date}}</span>
-                        </div>
-                    </div>
+
+            <div class="column one-fourth">
+                <div class="widget widget_recent_entries">
+                    <h2 class="widgettitle"> <span> {% trans "Featured Articles" %} </span> </h2>
+                    <ul>
+                        {% for article in featured_articles %}
+                        <li> 
+                            <a href="{{article.slug}}" title=""> <img src="{% easy_thumbnail article.featured_image 54x54 crop %}" alt="" title="" /> </a>
+                            <h6> <a href="{{article.slug}}" title=""> {{article.title|truncatechars:20}} </a> </h6>
+                            <p> {{article.article_content|truncatechars:50}} </p>
+                        </li>
                         {% empty %}
                         <p>{% trans "No items available" %}</p>
                         {% endfor %}
+                    </ul>
+                </div>
+            </div>
+

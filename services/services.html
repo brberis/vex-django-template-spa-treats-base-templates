@@ -1,0 +1,12 @@
+{% load i18n cms_tags sekizai_tags easy_thumbnail  %}
+
+        	<h1 class="title"> <span> {{instance.title}} </span> </h1>     
+            {% for service in services %}                
+            <div class="column one-fourth">
+                <div class="content-center-aligned">   
+                    <a href="{{service.url}}" title=""> <span class="arctext" data-radius="250"> {{service.title}} </span> <span class="rounded-img border"> <img src="{% easy_thumbnail service.image 204x204 crop %}" alt="{{service.title}}" title="" /> </span> </a>
+                    <p> {{service.message}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        <div class="hr_invisible"> </div>

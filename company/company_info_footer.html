@@ -1,22 +1,57 @@
 {% load i18n cms_tags sekizai_tags %}
-                        <div class="col-md-3">
-                            <div class="footer-block-2">
-                                <div class="title">
-                                    <h3>{{instance.title}}</h3>
-                                </div>
-                                <div class="contact-list">
-                                    <ul>
-                            {% for branch in branches %}
-                            <li>{{branch.address|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.region|default_if_none:""}}, {{branch.zipcode|default_if_none:""}}, {{branch.country|default_if_none:""}}</li>
-                            {% endfor %}
-                            {% for phone in phones %}
-                            <li><a href="tel:{{phone.phone}}" style="color: lightgrey">{{phone.phone}}</a></li>
-                            {% endfor %}
-                            {% for email in emails %}
-                            <li><a href="mailto:{{email.email}}" style="color: lightgrey">{{email.email}}</a></li>
-                            {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <div class="column one-fourth last">
+                <div class="widget">
+                    <h2 class="widgettitle"> <span> {{instance.title}} </span> </h2>
+                    <ul class="contact-details">
+                        {% for email in emails %}
+                        <li> <span class="mail"> </span> <p> <a href="mailto:{{email.email}}" title=""> {{email.email}} </a> </p> </li>
+                        {% endfor %}
+                        {% for phone in phones %}
+                        <li> <span class="phone"> </span> <p> <a href="tel:{{phone.phone}}" title=""> {{phone.phone}} </a></p> </li> 
+                        {% endfor %} 
+                        {% for branch in branches %}
+                        <li> <span class="address"> </span> <p> {{branch.address|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.city|default_if_none:""}}, {{branch.region|default_if_none:""}}, {{branch.zipcode|default_if_none:""}}, {{branch.country|default_if_none:""}}</p> </li>    
+                        {% endfor %}            
+                    </ul>                                      
+                </div>
+                <div class="widget social-widget">
+                    <h2> <span> We're Social </span> </h2>
+                    <ul>
+                        {% if company.facebook %}
+                        <li> 
+                            <a href="" title=""> 
+                                <img src="/static/images/facebook-hover.png" alt="image" title="" />
+                                <img src="/static/images/facebook.png" alt="image" title="" />                                
+                            </a> 
+                        </li>
+                        {% endif %}
+                        {% if company.twitter %}
+                        <li> 
+                            <a href="" title=""> 
+                                <img src="/static/images/twitter-hover.png" alt="image" title="" />
+                                <img src="/static/images/twitter.png" alt="image" title="" />                                
+                            </a> 
+                        </li>
+                        {% endif %}
+                        {% if company.flickr %}
+                        <li> 
+                            <a href="" title=""> 
+                                <img src="/static/images/flickr-hover.png" alt="" title="" />
+                                <img src="/static/images/flickr.png" alt="image" title="" />                                
+                            </a> 
+                        </li>
+                        {% endif %}
+                        {% if company.youtube %}
+                        <li> 
+                            <a href="" title=""> 
+                                <img src="/static/images/youtube-hover.png" alt="" title="" />
+                                <img src="/static/images/youtube.png" alt="image" title="" />                                
+                            </a> 
+                        </li>
+                        {% endif %}
+                    </ul>  
+                </div>
+            </div>
+
+
 
