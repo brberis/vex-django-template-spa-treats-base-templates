@@ -4,21 +4,21 @@
 
                         <div class='navfirster'>
                             <h1 class="assisth3">
-                                <a class='wide-link' href='{% page_url "rooms" %}' >
-                                   {% trans "Rooms" %}
+                                <a class='wide-link' href='{% page_url "services" %}' >
+                                   {% trans "Services" %}
 
                                 </a>
                             </h1>
                         </div>
                         <ul class="middcont addheight" id="Ul1">
                             
-                    {% for type in room_type_list %}
+                    {% for type in item_type_list %}
                     <div class="asstitle">
                         <h3 class="assisth3"> {{ type.name }}</h3>
                     </div> 
-                        {% for room in type.rooms_set.active %}
+                        {% for item in type.item_set.active %}
                         <li class=''>
-                            <em class="h3pic">&nbsp;</em> <a href="{% page_url "rooms" %}{{ room.slug }}"><span class="assisth3"> {{ room.title }}</span></a>
+                            <em class="h3pic">&nbsp;</em> <a href="{% page_url "services" %}{{ item.slug }}"><span class="assisth3"> {{ item.title }}</span></a>
                         </li>
                         {% endfor %}
                     {% endfor %}

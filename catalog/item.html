@@ -5,7 +5,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% block content %}   
 
-{% render_placeholder rooms.feature language placeholder_language %}
+{% render_placeholder item.feature language placeholder_language %}
 
 <!-- Rooms Details Body Start-->
 <div class="rooms-details-body">
@@ -23,7 +23,7 @@
                                             <i class="flaticon-royalty-crown"></i>
                                         </div> -->
                                        <div class="media-body hidden-xs">
-                                            <h4>{{rooms.title}}</h4>
+                                            <h4>{{item.title}}</h4>
                                             <div class="border"></div>                                         
                                             <p>{% trans "Reserve your unit now" %}</p>
                                         </div>
@@ -46,14 +46,14 @@
                                 <!-- Wrapper for slides -->
 
                                 <div class="carousel-inner">
-                                    {% for imagen in rooms.images.all %}
+                                    {% for imagen in item.images.all %}
                                     {% if forloop.counter == 1 %}
                                     <div class="item active">
                                     {% else %}
                                     <div class="item">
                                     {% endif %}
 
-                                        <img src="{% easy_thumbnail imagen.filer_image 708x524 crop %}" class="thumb-preview img-resp-custom" alt="{{ rooms.title }}" >
+                                        <img src="{% easy_thumbnail imagen.filer_image 708x524 crop %}" class="thumb-preview img-resp-custom" alt="{{ item.title }}" >
                                     </div>
                                     {% endfor%}
                                 </div>
@@ -73,8 +73,8 @@
                             </div>
 
                             <ol class="carousel-indicators thumbs visible-lg visible-md">
-                                {% for imagen in rooms.images.all %}
-                                <li data-target="#carousel-custom" data-slide-to="{{forloop.counter|add:'-1'}}" class=""><img src="{% easy_thumbnail imagen.filer_image 81x50 crop %}" alt="{{ rooms.title }}"></li>
+                                {% for imagen in item.images.all %}
+                                <li data-target="#carousel-custom" data-slide-to="{{forloop.counter|add:'-1'}}" class=""><img src="{% easy_thumbnail imagen.filer_image 81x50 crop %}" alt="{{ item.title }}"></li>
                                 {% endfor%}
                             </ol>
                         </div>
@@ -83,9 +83,9 @@
                     <!-- About Room start-->
                     <div class="about-room">
                         <h2 class="title">
-                            {{ rooms.title }}
+                            {{ item.title }}
                         </h2>
-                        <p> {{ rooms.description }}</p>
+                        <p> {{ item.description }}</p>
                     </div>
                     <!-- About Room End-->
 
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 amenities-box">
                                 <ul>
-                                    {% amenities rooms as all_amenities %}
+                                    {% amenities item as all_amenities %}
                                     {% for ameni in all_amenities %}
                                     {% if forloop.counter > 0 and forloop.counter < 6 %}
                                     <li>
@@ -107,7 +107,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 amenities-box">
                                 <ul>
-                                    {% amenities rooms as all_amenities %}
+                                    {% amenities item as all_amenities %}
                                     {% for ameni in all_amenities %}
                                     {% if forloop.counter > 5 and forloop.counter < 11 %}
                                     <li>
@@ -120,14 +120,14 @@
 
                         </div>
                     </div>
-                        {% render_placeholder rooms.content language placeholder_language %}
+                        {% render_placeholder item.content language placeholder_language %}
 
                     <!-- About Room End-->
                 </div>
                 </div>
                 <div class="col-ld-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="details-sidebar">
-                                {% render_placeholder rooms.sidebar language placeholder_language %}
+                                {% render_placeholder item.sidebar language placeholder_language %}
 
                 </div>
             </div>

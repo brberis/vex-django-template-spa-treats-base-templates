@@ -1,30 +1,25 @@
 {% load i18n cms_tags sekizai_tags  %}
-
-
-
 {% if instance.style == "Short" %}
-
-<div class="banner-contact m-b-50">
-        <h4>{{instance.name}}</h2>
-
-
-        <p class="m-b-20"> {{instance.message}}</p>
-        {% for phone in phones %}
-        <p><strong>{% trans "Phone" %}: </strong><a href="tel:{{phone.phone}}" style="color: white;">{{phone.phone}}</a></p>
-        {% endfor %}
-        {% for email in emails %}
-        <p><strong>{% trans "Email" %}:</strong> <a href="mailto:{{email.email}}" style="color: white;">{{email.email}}</a></p>
-        {% endfor %}
-        {% for branch in branches %}
-        <p><strong>{{branch.name|default_if_none:""}}:</strong><br> {{branch.address|default_if_none:""}} <br>{{branch.city|default_if_none:""}}</p>
-        {% endfor %}
-
-        <div style="padding-top: 20px">
-                    <a class="au-btn au-btn-border au-btn-border-light au-btn-block" href="{{instance.button_action}}">{{instance.button_label}}</a>
-
-        </div>
-
-      </div>  
-
 {% endif %}
+
+
+                    <h1> {{instance.name}} </h1>  
+                    <ul class="contact-details">  
+                        {% for branch in branches %}
+ 
+                        <li> <span class="address"> </span> <p> {{branch.address|default_if_none:""}} <br /> {{branch.city|default_if_none:""}{% if branch.state %}, {{branch.state|default_if_none:""}{% endif %} <br /> {{branch.country|default_if_none:""} </p> </li> 
+                        {% endfor %}
+                        {% for email in emails %}
+          
+                        <li> <span class="mail"> </span> <p> <a href="mailto:{{email.email}}" title=""> {{email.email}} </a> </p> </li>
+                        {% endfor %}
+                        {% for phone in phones %}  
+                        <li> <span class="phone"> </span> <p> {{phone.phone}} </p> </li>             
+                        {% endfor %}
+           
+                    </ul>
+                
+
+
+
 

@@ -3,43 +3,27 @@
 
 {% load re_paginator  i18n %}
 {% block content %}
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="#" title=""> {% trans "Home" %}</a>
+            <span class="arrow"> </span>
+            <span class="current-crumb"> {% trans "Services" %} </span>
+        <!--     <span class="arrow"> </span>
+            <span class="current-crumb"> Popular Procedures </span> -->
+        </div>  <!-- **Breadcrumb - End** -->           
+    </div>
+    <div class="main-container">
+    
+        <!-- **Content Full Width** -->
+        <div class="content content-full-width">  
 
-        
 {% render_placeholder placeholders.feature language placeholder_language %}
-
-
-
-<!-- Rooms List Start-->
-<div class="rooms-list content-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-xs-12">
-
-            {% for type in room_type_list %}
-                <!-- Block Heading Start-->
-                <div class="block-heading">
-                    <h4>
-                        <span class="heading-icon">
-                            <i class="fa fa-caret-right icon-design"></i>
-                            <i class="fa fa-th-list"></i>
-                        </span>
-                        {{type.name}}s
-                    </h4>
-
-                    <div class="toggle-view pull-right">
-                        <a href="#" class="active-view-btn">
-                            <i class="fa fa-th-list"></i>
-                        </a>
-                        <a href="#" class="change-view-btn">
-                            <i class="fa fa-th-large"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Block Heading End -->
-            {% for rooms in type.rooms_set.active %}
-            {% include 'rooms/rooms-box.html' %}
+{% for type in item_type_list %}
+<h1> {{type.name}} </h1>
+            {% for item in type.item_set.active %}
+            {% include 'catalog/item-box.html' %}
             {% endfor %}
-            {% endfor %}
+            {% endfor %}            
 
             {% render_placeholder placeholders.content language placeholder_language %}
 
@@ -50,23 +34,12 @@
                 </nav>
             {# pagination #}
 
-                 
-            </div>
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                   <div id="sideBar">
+   </div>
+   </div>
 
 
-                    {% render_placeholder placeholders.sidebar language placeholder_language %}
-
-
-
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>
-<!-- Rooms List End-->
-
+            
+<div class="hr_invisible"> </div>
 {% endblock %}
 
 

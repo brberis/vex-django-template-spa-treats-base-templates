@@ -1,133 +1,164 @@
-{% load i18n cms_tags sekizai_tags %}
-            <form action="/reservations" method="get">
-                    <div class="bottom-block">
-                            <h3>Check Availability</h3>
-                            <p>Check availability, prices and book online. No payment needed.</p>
-                    <div class="form-group">
-                        <label for="checkin">Check In</label>
-                        <input name="arrival" class="flatpickr" id="checkin" type="text" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="checkout">Check Out</label>
-                        <input name="departure" class="flatpickr" id="checkout" type="text" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="adults">Adults</label>
-                        <select class="form-control" name="adults" id="adults">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="guest">Children</label>
-                        <select class="form-control" name="children" id="adults">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
-                    </div>
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% load  i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block content %}   
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="#" title=""> {% trans "Home" %}</a>
+            <span class="arrow"> </span>
+            <span class="current-crumb"> {% trans "Reservas" %} </span>
+        <!--     <span class="arrow"> </span>
+            <span class="current-crumb"> Popular Procedures </span> -->
+        </div>  <!-- **Breadcrumb - End** -->           
+    </div>
+    <div class="main-container">
+
+        <!-- **Content Full Width** -->
+        <div class="content content-full-width"> 
+
+        {% if success == True %}
+        <h3 class="text-block text-black text-bold text-med m-b-40">{{ form_info.success_title }}</h3>
+                <hr class="heading_space"> 
+
+        <p>{{ form_info.success_message }}</p>
+        {% endif %}
+        {% if success == "Error" %}
+        <h3 class="text-block text-black text-bold text-med m-b-40">{% trans "Form Error" %}</h3>
+                <hr class="heading_space"> 
+
+        <p>{% trans "There was an error. Please try again" %}</p>
+        {% endif %}
+        {% if success == 0 %}
 
 
-                    <div class="form-group">
-                        <label>&nbsp;</label>
-                        <button class="btn btn-fill btn-md">Check Availability</button>
-                    </div>
+        
+            <h1 class="title"> <span> {{ form_info.title }} </span> </h1>
+            <p> {{ form_info.message }} </p>    
+            
+            <div class="hr_invisible"> </div>
+            
+            <div class="column two-third">
+                <div id="ajax_message"></div>
+                <form method="post" action="" name="contact" id="book-form" role="form" data-toggle="validator">{% csrf_token %}
+                    <p>
+                        <label> {% trans "First Name" %} <span class="required" required> * </span> </label>
+                        <input name="first_name" type="text" />
+                    </p>
+                    <p>
+                        <label> {% trans "Last Name" %} <span class="required" required> * </span> </label>
+                        <input name="last_name" type="text" />
+                    </p>
+
+                    <p>
+                        <label> {% trans "Telephone" %} <span class="required" required> * </span> </label>
+                        <input name="phone" type="text" />
+                    </p>
+                    <p>
+                        <label> Email <span class="required" required> * </span> </label>
+                        <input name="email" type="text" />
+                    </p>
+
+                    <p>
+                        <label> {% trans "Date of Therapy" %} <span class="required"> * </span> </label>
+                        <select class="day" id="treatment_day" name="day" required>    
+                            <option value="">{% trans "Day" %}</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option
+                            ><option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option
+                            ><option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        
+                        <select class="day" id="treatment_month" name="month" required>
+                            <option value="">{% trans "Month" %}</option>
+                            <option value="8">Aug</option>
+                            <option value="9">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label> {% trans "Preferred time" %} <span class="required" > * </span> </label>
+                        <select class="salutation" id="PreferredTime" name="time" required>
+                            <option>{% trans "Time" %}</option>
+                            <option>8 AM</option>
+                            <option>9 AM</option>
+                            <option>10 AM</option>
+                            <option>11 AM</option>
+                            <option>12 PM</option>
+                            <option>01 PM</option>
+                            <option>02 PM</option>
+                            <option>03 PM</option>
+                            <option>04 PM</option>
+                            <option>05 PM</option>
+                            <option>06 PM</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label> Type of Therapy </label> 
+                        <select class="treatment" id="treatment" name="service" required>
+
+                            <option value="">Please Select a Treatment</option>
+                            {% for service in form_info.service.all %}
+                            <option value="{{service.service}}">{{service.service}}</option>
+                            {% endfor %}
+                        </select>       
+                    </p>
+<!--                     <p>
+                        <label> No. of Persons <span class="required"> * </span> </label>
+                        <input name="persons" type="text" />
+                    </p> -->
+                    <p>
+                        <label> {% trans "Special Requests" %} </label>
+                        <textarea name="message" cols="" rows=""></textarea>
+                    </p>
+                    <p class="submit">
+                        <input name="booknow" type="submit" value="{% trans 'Book Now' %}" />
+                    </p>                    
+                </form>   
+            </div>
+            <div class="column one-third last">    
+                <div class="booknow-page">
+                        {% render_placeholder form_info.sidebar language placeholder_language %}
                 </div>
-            </form>
-
-<!-- 
-<form action="reservations/" method="get">
-
-<div class="container">
-    <div class="search-bar-vertical">
-        <div class="search-bar-vertical-inner">
-            <h2 class="visible-lg visible-md">Find your product</h2>
-            <form>
-                <div class="row">
-                    <div class="form-group">
-                        <label for="checkin">Check In</label>
-                        <input name="arrival" class="flatpickr" id="checkin" type="text" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="checkout">Check Out</label>
-                        <input name="departure" class="flatpickr" id="checkout" type="text" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="adults">Adults</label>
-                        <select class="form-control" name="adults" id="adults">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="guest">Children</label>
-                        <select class="form-control" name="children" id="adults">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                        </select>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>&nbsp;</label>
-                        <button class="btn btn-fill btn-md">Check Availability</button>
-                    </div>
-                </div>
-            </form>
-            <div class="clearfix"></div>
+            </div>
         </div>
     </div>
-</div>
-</form> -->
+    <div class="hr_invisible"> </div>
 
-<!-- {{ form.non_field_errors }}
-<div class="fieldWrapper">
-    {{ form.subject.errors }}
-    <label for="{{ form.subject.id_for_label }}">Email subject:</label>
-    {{ form.subject }}
-</div>
-<div class="fieldWrapper">
-    {{ form.message.errors }}
-    <label for="{{ form.message.id_for_label }}">Your message:</label>
-    {{ form.message }}
-</div>
-<div class="fieldWrapper">
-    {{ form.sender.errors }}
-    <label for="{{ form.sender.id_for_label }}">Your email address:</label>
-    {{ form.sender }}
-</div>
-<div class="fieldWrapper">
-    {{ form.cc_myself.errors }}
-    <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>
-    {{ form.cc_myself }}
-</div>
- -->
+
+
+ {% endif %}
+
+
+{% endblock %}

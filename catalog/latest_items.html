@@ -18,7 +18,7 @@
                     
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    {% for room in room_list %}
+                    {% for item in item_list %}
                     {% if forloop.counter == 1 %}
                     <div class="item active">
                     {% endif %}
@@ -29,17 +29,17 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-pad">
-                                {% for image in room.images.all|slice:":1" %}
+                                {% for image in item.images.all|slice:":1" %}
                                     <img   src="{% easy_thumbnail image.filer_image 585x389 crop %}" altsrc="{{ image.url }}" class="img-responsive" alt="{{image.name}}"  />
                                 {% endfor%}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 details">
-                                    <h3>{{room.title}}</h3>
-                                    <h4>{{room.type}} {% trans "Details" %}</h4>
+                                    <h3>{{item.title}}</h3>
+                                    <h4>{{item.type}} {% trans "Details" %}</h4>
                                     <p style="padding-right: 30px">
-                                        {{ room.short_description }}</p>
+                                        {{ item.short_description }}</p>
 
-                                    <a href="{% page_url "rooms" %}{{ room.slug }}" class="btn btn-fill ">{% trans "View Room Details" %}</a>
+                                    <a href="{% page_url "services" %}{{ item.slug }}" class="btn btn-fill ">{% trans "View item Details" %}</a>
                                 </div>
                             </div>
                         </div>
