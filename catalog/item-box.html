@@ -1,11 +1,11 @@
-{% load easy_thumbnail amenities i18n humanize %}
+{% load easy_thumbnail attributes i18n humanize %}
 
             <div class="column one-third">
                 <img src="{% easy_thumbnail item.featured_image 300x260 crop %}" alt="" title="" />
                 <div class="box-content-with-design">
                     <h3> {{ item.title }} </h3>
                     <ul class="flower-bullet green">
-                        {% amenities item as all_amenities %}
+                        {% attributes item as all_amenities %}
                         {% for ameni in all_amenities %}
                         <li> {{ameni.0}} </li>
                         {% endfor %}
