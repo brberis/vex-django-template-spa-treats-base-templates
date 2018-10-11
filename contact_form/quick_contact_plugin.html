@@ -5,9 +5,9 @@
             {% if not form_info %}
             <p class="" >{% trans "Thank you for contacting us." %}</p>
              {% else %}
-                <input name="name" type="text" onblur="this.value=(this.value=='') ? "{% trans 'Your Name' %}" : this.value;" onfocus="this.value=(this.value=='{% trans "Your Name" %}') ? '' : this.value;" value="{% trans 'Your Name:' %}" />
-                <input name="name" type="text" onblur="this.value=(this.value=='') ? '{% trans "Your Email" %}' : this.value;" onfocus="this.value=(this.value=='{% trans "Your Email" %}') ? '' : this.value;" value="{% trans 'Your Name' %}" />
-                <input name="submit" type="submit" value="{% trans 'Subscribe' %}" />
+                <input name="name" type="text" onblur="this.value=(this.value=='') ? "{% trans 'Nombre' %}" : this.value;" onfocus="this.value=(this.value=='{% trans "Nombre" %}') ? '' : this.value;" value="{% trans 'Nombre:' %}" />
+                <input name="email" type="text" onblur="this.value=(this.value=='') ? '{% trans "Email" %}' : this.value;" onfocus="this.value=(this.value=='{% trans "Email" %}') ? '' : this.value;" value="{% trans 'Email' %}" />
+                <input name="submit" type="submit" value="{% trans 'Suscribirse' %}" />
             {% endif %}
             </form>
         </div>
