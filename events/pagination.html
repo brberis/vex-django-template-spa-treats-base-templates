@@ -1,0 +1,27 @@
+{% load i18n %}
+
+   <ul class="pagination">
+            {% if previous %}
+                        <li>
+
+                        </li>
+                            {% else %}
+                            <li class="disabled">                            <a href="#" aria-label="{% trans 'Previous' %}">
+                                <span aria-hidden="true">«</span>
+                            </a></li>
+                        {% endif %}
+                            {% for link in links %}
+                                <li{% if link.page == current %} class="active"{% endif %}>
+                                    <a href="{{ link.href }}">{{ link.page }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if next %}
+                                <li><a href="{{ next }}" aria-label="{% trans 'Next' %}"><span aria-hidden="true">»</span></a></li>
+                            {% else %}
+                                <li class="disabled"><a href="#">{% trans "Next" %}</a></li>
+                            {% endif %}
+
+
+                    </ul>
+                <!-- Page navigation End-->
+

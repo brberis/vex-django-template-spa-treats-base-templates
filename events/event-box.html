@@ -1,31 +1,31 @@
 {% load easy_thumbnail attributes i18n humanize %}
 
             <div class="column one-third">
-                <img src="{% easy_thumbnail item.featured_image 300x260 crop %}" alt="" title="" />
+                <img src="{% easy_thumbnail event.featured_image 300x260 crop %}" alt="" title="" />
                 <div class="box-content-with-design">
-                    <h3> {{ item.title }} </h3>
+                    <h3> {{ event.title }} </h3>
                     <ul class="flower-bullet green">
-                        {% attributes item as all_amenities %}
+                        {% attributes event as all_amenities %}
                         {% for ameni in all_amenities %}
                         <li> {{ameni.0}} </li>
                         {% endfor %}
                     </ul>
-                    <h3> {% trans "Price" %} desde</h3>
-
+                    <h3> {% trans "Price" %} </h3>
+                                        
                     <table border="0" cellpadding="0" cellspacing="0" class="price-table">
                         <tbody> 
                             <tr>
-                                <td class="odd">{{item.unit.value}} {{item.unit.name}}</td>
-                                <td class="even"> {{item.price|intcomma}} </td>
+                                <td class="odd">{{event.unit.value}} {{event.unit.name}}</td>
+                                <td class="even"> {{event.price|intcomma}} </td>
                             </tr>
                         </tbody>
                     </table>    
                     <hr>
-                    <h3> {% trans "Terapeuta" %} </h3>
+                    <h3> {% trans "Facilitador(a)" %} </h3>
                     <table border="0" cellpadding="0" cellspacing="0" class="price-table">
                         <tbody> 
                             <tr>
-                                <td class="odd">{{item.agent}}</td>
+                                <td class="odd">{{event.exhibitor}}</td>
                             </tr>
                         </tbody>
                     </table>                    
@@ -34,13 +34,13 @@
             
             <div class="column two-third last">            
                 <p> 
-                    {{ item.description|safe }}
+                    {{ event.short_description }}
                 </p>             
                    
   <!--               <blockquote> <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p> </blockquote>     -->            
                 <div class="hr_invisible"> </div>          
-                <a href="https://auraverde.cl/es/reservas/" class="big-ico-button red book"> <span> {% trans "Reserva Aquí" %} </span> </a>                
-                <a href="https://auraverde.cl/es/reservas/" class="big-ico-button green leaf"> <span> {% trans "Regala una Sesión" %} </span> </a>      
+                <a href="https://auraverde.cl/es/reservas/" class="big-ico-button red book"> <span> {% trans "Inscripciones" %} </span> </a>                
+                <a href="{{ request.path }}{{event.slug}}/" class="big-ico-button green leaf"> <span> {% trans "Más Información" %} </span> </a>      
             </div>
             
             <div class="hr"> </div>

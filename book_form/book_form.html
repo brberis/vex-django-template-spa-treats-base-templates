@@ -7,7 +7,7 @@
 
     <div class="breadcrumb">
         <div class="container">
-            <a href="#" title=""> {% trans "Home" %}</a>
+            <a href="#" title=""> {% trans "Inicio" %}</a>
             <span class="arrow"> </span>
             <span class="current-crumb"> {% trans "Reservas" %} </span>
         <!--     <span class="arrow"> </span>
@@ -44,16 +44,16 @@
                 <div id="ajax_message"></div>
                 <form method="post" action="" name="contact" id="book-form" role="form" data-toggle="validator">{% csrf_token %}
                     <p>
-                        <label> {% trans "First Name" %} <span class="required" required> * </span> </label>
+                        <label> {% trans "Nombre" %} <span class="required" required> * </span> </label>
                         <input name="first_name" type="text" />
                     </p>
                     <p>
-                        <label> {% trans "Last Name" %} <span class="required" required> * </span> </label>
+                        <label> {% trans "Apellido" %} <span class="required" required> * </span> </label>
                         <input name="last_name" type="text" />
                     </p>
 
                     <p>
-                        <label> {% trans "Telephone" %} <span class="required" required> * </span> </label>
+                        <label> {% trans "Télefono" %} <span class="required" required> * </span> </label>
                         <input name="phone" type="text" />
                     </p>
                     <p>
@@ -62,9 +62,9 @@
                     </p>
 
                     <p>
-                        <label> {% trans "Date of Therapy" %} <span class="required"> * </span> </label>
+                        <label> {% trans "Día de la Terapia" %} <span class="required"> * </span> </label>
                         <select class="day" id="treatment_day" name="day" required>    
-                            <option value="">{% trans "Day" %}</option>
+                            <option value="">{% trans "Día" %}</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -99,18 +99,25 @@
                         </select>
                         
                         <select class="day" id="treatment_month" name="month" required>
-                            <option value="">{% trans "Month" %}</option>
-                            <option value="8">Aug</option>
+                            <option value="">{% trans "Mes" %}</option>
+                            <option value="1">Ene</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Mar</option>
+                            <option value="4">Abr</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">Jul</option>
+                            <option value="8">Ago</option>
                             <option value="9">Sep</option>
                             <option value="10">Oct</option>
                             <option value="11">Nov</option>
-                            <option value="12">Dec</option>
+                            <option value="12">Dic</option>
                         </select>
                     </p>
                     <p>
-                        <label> {% trans "Preferred time" %} <span class="required" > * </span> </label>
+                        <label> {% trans "Hora de preferencia" %} <span class="required" > * </span> </label>
                         <select class="salutation" id="PreferredTime" name="time" required>
-                            <option>{% trans "Time" %}</option>
+                            <option>{% trans "Hora" %}</option>
                             <option>8 AM</option>
                             <option>9 AM</option>
                             <option>10 AM</option>
@@ -125,10 +132,10 @@
                         </select>
                     </p>
                     <p>
-                        <label> Type of Therapy </label> 
+                        <label> Tipo de Terapia </label> 
                         <select class="treatment" id="treatment" name="service" required>
 
-                            <option value="">Please Select a Treatment</option>
+                            <option value="">Por favor seleccione un tipo</option>
                             {% for service in form_info.service.all %}
                             <option value="{{service.service}}">{{service.service}}</option>
                             {% endfor %}
@@ -139,11 +146,11 @@
                         <input name="persons" type="text" />
                     </p> -->
                     <p>
-                        <label> {% trans "Special Requests" %} </label>
+                        <label> {% trans "Requerimientos especiales" %} </label>
                         <textarea name="message" cols="" rows=""></textarea>
                     </p>
                     <p class="submit">
-                        <input name="booknow" type="submit" value="{% trans 'Book Now' %}" />
+                        <input name="booknow" type="submit" value="{% trans 'Reservar' %}" />
                     </p>                    
                 </form>   
             </div>
@@ -152,13 +159,15 @@
                         {% render_placeholder form_info.sidebar language placeholder_language %}
                 </div>
             </div>
+        {% endif %}
         </div>
+
     </div>
     <div class="hr_invisible"> </div>
 
 
 
- {% endif %}
+
 
 
 {% endblock %}

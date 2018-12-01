@@ -7,7 +7,7 @@
                     <ul class="contact-details">  
                         {% for branch in branches %}
  
-                        <li> <span class="address"> </span> <p> {{branch.address|default_if_none:""}} <br /> {{branch.city|default_if_none:""}{% if branch.state %}, {{branch.state|default_if_none:""}{% endif %} <br /> {{branch.country|default_if_none:""} </p> </li> 
+                        <li> <span class="address"> </span> <p> {{branch.address|default_if_none:""}} <br /> {{branch.city|default_if_none:""}}{% if branch.state %}, {{branch.state|default_if_none:""}}{% endif %} <br /> {{branch.country|default_if_none:""}} </p> </li> 
                         {% endfor %}
                         {% for email in emails %}
           

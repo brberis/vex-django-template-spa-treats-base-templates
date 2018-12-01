@@ -6,8 +6,8 @@
                     <ul>
                         {% for article in featured_articles %}
                         <li> 
-                            <a href="{{article.slug}}" title=""> <img src="{% easy_thumbnail article.featured_image 54x54 crop %}" alt="" title="" /> </a>
-                            <h6> <a href="{{article.slug}}" title=""> {{article.title|truncatechars:20}} </a> </h6>
+                            <a href="/blog/{{article.slug}}" title=""> <img src="{% easy_thumbnail article.featured_image 54x54 crop %}" alt="" title="" /> </a>
+                            <h6> <a href="/blog/{{article.slug}}" title=""> {{article.title|truncatechars:20}} </a> </h6>
                             <p> {{article.article_content|truncatechars:50}} </p>
                         </li>
                         {% empty %}

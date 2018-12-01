@@ -4,81 +4,86 @@
 
 {% block content %}
 
-
-    <div class="heading-page heading-page-1 bg-cover" style="background: url({% easy_thumbnail blog.image 1349x397 crop %}) center center no-repeat;">
+    <div class="breadcrumb">
         <div class="container">
-            <ul class="breadcrumbs">
-                {% block breadcrumb %}
-                {% show_breadcrumb %}
-                {% endblock %}
- 
-
-            <ul>
-            <h3 class="title pull-right">{{ blog.title|safe }}</h3>
-        </div>
+            <a href="#" title=""> Inicio </a>
+            <span class="arrow"> </span>
+            <span class="current-crumb"> Blog </span>
+        </div>  <!-- **Breadcrumb - End** -->           
     </div>
-    <br>
-   <div class="page-content p-b-70">
-        <div class="container">
-            <div class="row" >
-                <div class="col-md-9">
-                    <section class="section post-section-2 p-r-40">
-                        {% for article in object_list %}
-                        <div class="post-header">
-                            <h3 class="text-block text-black text-bold text-med-large m-b-25"><a href="{{article.slug}}">{{article.title}}</h3>
-                            <div class="post-info m-b-30">
-                                <p class="text-block">{% trans "by" %}
-                                    <a href="#">{{article.author}}</a>
-                                    <span>|</span>{{article.publishing_date|date}}
-                                    <span>|</span>
-                                    {% for tag in article.tags.all %}
-                                    <a href="#">{{tag}}</a>
-                                    {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            {% if article.featured_image %}
-                            <div class="plyr-video m-b-50">
-                                <img src="{% easy_thumbnail article.featured_image 830x250 crop %}" class="img-responsive" alt="{{article.title}}" />
-                            </div>
-                            {% endif %}
 
-                                {{article.article_content|safe|truncatechars:500}}
-                            }
-                        </div>
-                        <div class="post-footer clearfix m-b-50">
-                            <div class="block-right">
-                                <ul class="tags">
-                                    {% for tag in article.tags.all %}
-                                    <li class="tag">
-                                        <a href="#">{{tag}}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                           
-                        </div>
+
+
+<div class="main-container">
+    
+        <!-- **Content Full Width** -->
+        <div class="content content-full-width">  
+        
+            <!-- **Blog Header** -->
+            <div class="blog-header">
+                <ul class="cat-menu">
+                    <li><a href="#" title="" rel="toggle[categories]"> Categories <span class="arrow-down"> </span> </a></li>
+                </ul>
+                <div id="categories" class="categories-list">      
+                    <ul>
+                        {% for category in categories %}
+                        <li class="active"> <a href="/blog?category={{category.id}}" title=""> {{category.name}}</a> </li>
                         {% endfor %}
-
-
-
-
-
-                    </section>
-                </div>
-                <div class="col-md-3" style="padding-top: 15px">
-
-
-                {% static_placeholder "sidebar_blog" %}
        
+                    </ul>                                       
                 </div>
+                
+
+            </div><!-- **Blog Header - End** -->
+            
+            <!-- **Blog Post** -->
+            {% for article in object_list %}
+            <div class="blog-post">
+                <div class="post-title">
+                    <h2> <a href="/blog/{{article.slug}}" title=""> {{article.title}} </a> </h2>
+                    <a href="/blog/{{article.slug}}" class="tooltip-top readmore" title="Leer más"> </a>
+                    <span class="arrow"> </span>
+                </div>
+                
+                <div class="post-details">                
+                    <div class="date">
+                        <span class="day"> {{article.publishing_date|date:"d"}} </span>
+                        <span class="date-group">
+                            <span class="month"> {{article.publishing_date|date:"M"}} </span>
+                            <span class="year"> {{article.publishing_date|date:"Y"}} </span>
+                        </span>
+                        <span class="arrow"> </span> 
+                    </div>                    
+<!--                     <div class="post-comments">
+                        <a href="blog-single.html" title=""> <span class="count"> 18 </span> <span class="comment"> Comments </span> </a> 
+                        <span class="arrow"> </span>                       
+                    </div>    -->
+                </div>
+                
+                <div class="post-content">
+                    <div class="post-thumb">
+                        <a href="/blog/{{article.slug}}" title=""> <img src="{% easy_thumbnail article.featured_image 850x340 crop %}" alt="" title="" /> </a>
+                    </div> 
+                    <p> {{article.article_content|safe|truncatechars:500}} </p>
+                </div> 
+            </div><!-- **Blog Post - End** -->
+
+            {% endfor %}
+
+        <div class="hr_invisible"> </div>
+
+                {% include "blog/pagination.html" %}
+
+
+
+        <div class="hr_invisible"> </div>
+
             </div>
-
         </div>
-    </div>    
-<!-- Blog Body End -->
-       
+
+
+
+
 
 
 {% endblock %}

@@ -15,11 +15,11 @@
                     </ul>                                      
                 </div>
                 <div class="widget social-widget">
-                    <h2> <span> We're Social </span> </h2>
+                    <h2> <span> Redes Sociales </span> </h2>
                     <ul>
                         {% if company.facebook %}
                         <li> 
-                            <a href="" title=""> 
+                            <a href="{{company.facebook}}" title=""> 
                                 <img src="/static/images/facebook-hover.png" alt="image" title="" />
                                 <img src="/static/images/facebook.png" alt="image" title="" />                                
                             </a> 
@@ -27,7 +27,7 @@
                         {% endif %}
                         {% if company.twitter %}
                         <li> 
-                            <a href="" title=""> 
+                            <a href="{{company.twitter}}" title=""> 
                                 <img src="/static/images/twitter-hover.png" alt="image" title="" />
                                 <img src="/static/images/twitter.png" alt="image" title="" />                                
                             </a> 
@@ -35,7 +35,7 @@
                         {% endif %}
                         {% if company.flickr %}
                         <li> 
-                            <a href="" title=""> 
+                            <a href="{{company.flickr}}" title=""> 
                                 <img src="/static/images/flickr-hover.png" alt="" title="" />
                                 <img src="/static/images/flickr.png" alt="image" title="" />                                
                             </a> 
@@ -43,7 +43,7 @@
                         {% endif %}
                         {% if company.youtube %}
                         <li> 
-                            <a href="" title=""> 
+                            <a href="{{company.youtube}}" title=""> 
                                 <img src="/static/images/youtube-hover.png" alt="" title="" />
                                 <img src="/static/images/youtube.png" alt="image" title="" />                                
                             </a> 

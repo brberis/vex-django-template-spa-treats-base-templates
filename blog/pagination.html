@@ -1,35 +1,28 @@
  {% load  i18n %}
 
- <!-- Page navigation Start-->
-<nav aria-label="Page navigation">
-    <ul class="pagination">
-        {% if page_obj.has_previous %}
-        <li>
-            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-            </a>
-        </li>
-        {% endif %}
-        {% for num in page_obj.paginator.page_range %}
-            {% if num %}
-                {% if page_obj.number == num %}
-        <li class="active"><a href="#">{{ num }}</a></li>
-                {% else %}
-                    <li><a href="{{ request.path }}?page={{ num }}">{{ num }}</a></li>
+
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}" title="" class="prev-post"> <span> Previo </span> </a>
                 {% endif %}
-            {% else %}
-                <li><a href="{{ request.path }}?page={{ num|add:"5" }}">...</a></li>
-            {% endif %}
-        {% empty %}
-            <li class="active"><a href="#">1</a></li>
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <li>
-                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" aria-label="Next">
-                    <span aria-hidden="true">»</span>
-                </a>
-            </li>
-        {% endif %}
-    </ul>
-</nav>
-<!-- Page navigation End-->
+                {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}" title="" class="next-post"> <span> Próximo </span> </a>
+                {% endif %}
+                <ul>
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num %}
+                        {% if page_obj.number == num %}
+                            <li class="active-page"> {{ num }} </li>
+                        {% else %}
+                            <li> <a href="{{ request.path }}?page={{ num }}" title=""> {{ num }} </a> </li>
+                        {% endif %}
+                    {% else %}
+                            <li> <a href="{{ request.path }}?page={{ num|add:"5" }}" title=""> ... </a> </li>
+                    {% endif %}
+                {% empty %}
+                    <li class="active-page"> <a href="#" title=""> 1 </a> </li>
+                {% endfor %}
+
+                </ul>
+                
+            </div>
